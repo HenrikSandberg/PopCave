@@ -7,28 +7,32 @@
 //
 
 import UIKit
-struct AlbumStruct {
-    var artist:String
-    var album:String
-    var artwork:String
-    
-    init(json: [String: Any]) {
-         album = json["title"] as? String ?? "Nothing"
-         artist = "Somthing"
-        artwork = "Somthing else"
-    }
+struct AlbumStruct: Decodable {
+    var strArtist:String?
+    var strAlbum:String?
+    var strAlbumThumb:String?
+    var idAlbum:String?
+    var idArtist:String?
+    var strDescription: String?
 }
 
 class FavoriteView: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     private var listContent = [AlbumStruct]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadTopAlbums()
         
-        let jsonUrlString = "https://jsonplaceholder.typicode.com/todos"
-        
-        if let url = URL(string: jsonUrlString){
+        collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    }
+    
+    
+    private func loadTopAlbums() {
+        if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/mostloved.php?format=album") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
                 guard let data = data else { return }
@@ -36,13 +40,15 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
 //                print(dataString ?? "Nothing")
                 
                 do {
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
-                        print("Could not get JSON")
-                        return
+                    let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
+//                    for album in albums["loved"]!{
+//                        print(album.strArtist!)
+//                    }
+                    DispatchQueue.main.async {
+                        self.listContent = albums["loved"]!
+                        self.collectionView.reloadData()
                     }
-                    
-                    let album = AlbumStruct(json: json)
-                    print(album.album)
+
                     
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
@@ -50,18 +56,15 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
                 
             }.resume()
         }
-
-        
-        collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
 }
 
-extension FavoriteView: UICollectionViewDataSource{
+
+
+extension FavoriteView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return listContent.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -73,48 +76,27 @@ extension FavoriteView: UICollectionViewDataSource{
           assertionFailure("Should have dequeued SongCell here")
           return UICollectionViewCell()
         }
-        return configured(cell, at: indexPath)
+        return configured(cell, at: indexPath, with: listContent[indexPath.row])
     }
     
-    func configured(_ cell: AlbumCell, at indexPath: IndexPath) -> AlbumCell {
-        cell.songTitle.text = "Hello World"
-        cell.artistName.text = "This is an artist"
-        //cell.coverArt.image =
+    func configured(_ cell: AlbumCell, at indexPath: IndexPath, with content: AlbumStruct) -> AlbumCell {
+        if let contentUrl = content.strAlbumThumb {
+            if let url = URL(string: contentUrl) {
+                do {
+                    let data = try Data(contentsOf : url)
+                    let image = UIImage(data : data)
+                    cell.coverArt.image = image
+                } catch let err {
+                    print(err)
+                }
+            }
+        }
+
+
+        
+        cell.songTitle.text = content.strAlbum ?? "Hello World"
+        cell.artistName.text = content.strArtist ?? "This is an artist"
+        
         return cell
     }
 }
-
-//func loadData(from urlString: String) {
-//
-//    guard let url = URL(string: urlString) else {return}
-//    let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//
-//        guard let dataResponse = data, error == nil else {
-//              print(error?.localizedDescription ?? "Response Error")
-//              return
-//        }
-//
-//        do {
-//            let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
-//
-//            guard let jsonArray = jsonResponse as? [[String: Any]] else { return }
-//
-//            DispatchQueue.main.sync(execute: {
-//                for content in jsonArray{
-//                    guard let title = content["title"] as? String else {
-//                        print("Coud not cast to string")
-//                        return
-//                    }
-//                    self.data.append(albumContent(title: title, album: "Test", artwork: "hello"))
-//                }
-//
-//                self.collectionView.reloadData()
-//            })
-//
-//
-//         } catch let parsingError {
-//            print("Error", parsingError)
-//       }
-//    }
-//    task.resume()
-//}
