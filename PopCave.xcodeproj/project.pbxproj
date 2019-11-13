@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF35A30C237C1FAD00A929F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30B237C1FAD00A929F7 /* AppDelegate.swift */; };
+		AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */; };
+		AF35A310237C1FAD00A929F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30F237C1FAD00A929F7 /* ViewController.swift */; };
+		AF35A313237C1FAD00A929F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF35A311237C1FAD00A929F7 /* Main.storyboard */; };
+		AF35A316237C1FAD00A929F7 /* PopCave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */; };
+		AF35A318237C1FAD00A929F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF35A317237C1FAD00A929F7 /* Assets.xcassets */; };
+		AF35A31B237C1FAD00A929F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF35A319237C1FAD00A929F7 /* LaunchScreen.storyboard */; };
+		AF35A326237C1FAD00A929F7 /* PopCaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A325237C1FAD00A929F7 /* PopCaveTests.swift */; };
+		AF35A331237C1FAD00A929F7 /* PopCaveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AF35A322237C1FAD00A929F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF35A300237C1FAD00A929F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF35A307237C1FAD00A929F7;
+			remoteInfo = PopCave;
+		};
+		AF35A32D237C1FAD00A929F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF35A300237C1FAD00A929F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF35A307237C1FAD00A929F7;
+			remoteInfo = PopCave;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AF35A308237C1FAD00A929F7 /* PopCave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopCave.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF35A30B237C1FAD00A929F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		AF35A30F237C1FAD00A929F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF35A312237C1FAD00A929F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopCave.xcdatamodel; sourceTree = "<group>"; };
+		AF35A317237C1FAD00A929F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF35A31A237C1FAD00A929F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AF35A31C237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF35A321237C1FAD00A929F7 /* PopCaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopCaveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF35A325237C1FAD00A929F7 /* PopCaveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCaveTests.swift; sourceTree = "<group>"; };
+		AF35A327237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF35A32C237C1FAD00A929F7 /* PopCaveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopCaveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCaveUITests.swift; sourceTree = "<group>"; };
+		AF35A332237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF35A305237C1FAD00A929F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A31E237C1FAD00A929F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A329237C1FAD00A929F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF35A2FF237C1FAD00A929F7 = {
+			isa = PBXGroup;
+			children = (
+				AF35A30A237C1FAD00A929F7 /* PopCave */,
+				AF35A324237C1FAD00A929F7 /* PopCaveTests */,
+				AF35A32F237C1FAD00A929F7 /* PopCaveUITests */,
+				AF35A309237C1FAD00A929F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF35A309237C1FAD00A929F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF35A308237C1FAD00A929F7 /* PopCave.app */,
+				AF35A321237C1FAD00A929F7 /* PopCaveTests.xctest */,
+				AF35A32C237C1FAD00A929F7 /* PopCaveUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF35A30A237C1FAD00A929F7 /* PopCave */ = {
+			isa = PBXGroup;
+			children = (
+				AF35A30B237C1FAD00A929F7 /* AppDelegate.swift */,
+				AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */,
+				AF35A30F237C1FAD00A929F7 /* ViewController.swift */,
+				AF35A311237C1FAD00A929F7 /* Main.storyboard */,
+				AF35A317237C1FAD00A929F7 /* Assets.xcassets */,
+				AF35A319237C1FAD00A929F7 /* LaunchScreen.storyboard */,
+				AF35A31C237C1FAD00A929F7 /* Info.plist */,
+				AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */,
+			);
+			path = PopCave;
+			sourceTree = "<group>";
+		};
+		AF35A324237C1FAD00A929F7 /* PopCaveTests */ = {
+			isa = PBXGroup;
+			children = (
+				AF35A325237C1FAD00A929F7 /* PopCaveTests.swift */,
+				AF35A327237C1FAD00A929F7 /* Info.plist */,
+			);
+			path = PopCaveTests;
+			sourceTree = "<group>";
+		};
+		AF35A32F237C1FAD00A929F7 /* PopCaveUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */,
+				AF35A332237C1FAD00A929F7 /* Info.plist */,
+			);
+			path = PopCaveUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF35A307237C1FAD00A929F7 /* PopCave */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF35A335237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCave" */;
+			buildPhases = (
+				AF35A304237C1FAD00A929F7 /* Sources */,
+				AF35A305237C1FAD00A929F7 /* Frameworks */,
+				AF35A306237C1FAD00A929F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PopCave;
+			productName = PopCave;
+			productReference = AF35A308237C1FAD00A929F7 /* PopCave.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AF35A320237C1FAD00A929F7 /* PopCaveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF35A338237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCaveTests" */;
+			buildPhases = (
+				AF35A31D237C1FAD00A929F7 /* Sources */,
+				AF35A31E237C1FAD00A929F7 /* Frameworks */,
+				AF35A31F237C1FAD00A929F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF35A323237C1FAD00A929F7 /* PBXTargetDependency */,
+			);
+			name = PopCaveTests;
+			productName = PopCaveTests;
+			productReference = AF35A321237C1FAD00A929F7 /* PopCaveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AF35A32B237C1FAD00A929F7 /* PopCaveUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF35A33B237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCaveUITests" */;
+			buildPhases = (
+				AF35A328237C1FAD00A929F7 /* Sources */,
+				AF35A329237C1FAD00A929F7 /* Frameworks */,
+				AF35A32A237C1FAD00A929F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF35A32E237C1FAD00A929F7 /* PBXTargetDependency */,
+			);
+			name = PopCaveUITests;
+			productName = PopCaveUITests;
+			productReference = AF35A32C237C1FAD00A929F7 /* PopCaveUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF35A300237C1FAD00A929F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Henrik Anthony Odden Sandberg";
+				TargetAttributes = {
+					AF35A307237C1FAD00A929F7 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					AF35A320237C1FAD00A929F7 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = AF35A307237C1FAD00A929F7;
+					};
+					AF35A32B237C1FAD00A929F7 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = AF35A307237C1FAD00A929F7;
+					};
+				};
+			};
+			buildConfigurationList = AF35A303237C1FAD00A929F7 /* Build configuration list for PBXProject "PopCave" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF35A2FF237C1FAD00A929F7;
+			productRefGroup = AF35A309237C1FAD00A929F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF35A307237C1FAD00A929F7 /* PopCave */,
+				AF35A320237C1FAD00A929F7 /* PopCaveTests */,
+				AF35A32B237C1FAD00A929F7 /* PopCaveUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF35A306237C1FAD00A929F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF35A31B237C1FAD00A929F7 /* LaunchScreen.storyboard in Resources */,
+				AF35A318237C1FAD00A929F7 /* Assets.xcassets in Resources */,
+				AF35A313237C1FAD00A929F7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A31F237C1FAD00A929F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A32A237C1FAD00A929F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF35A304237C1FAD00A929F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF35A310237C1FAD00A929F7 /* ViewController.swift in Sources */,
+				AF35A30C237C1FAD00A929F7 /* AppDelegate.swift in Sources */,
+				AF35A316237C1FAD00A929F7 /* PopCave.xcdatamodeld in Sources */,
+				AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A31D237C1FAD00A929F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF35A326237C1FAD00A929F7 /* PopCaveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF35A328237C1FAD00A929F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF35A331237C1FAD00A929F7 /* PopCaveUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF35A323237C1FAD00A929F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF35A307237C1FAD00A929F7 /* PopCave */;
+			targetProxy = AF35A322237C1FAD00A929F7 /* PBXContainerItemProxy */;
+		};
+		AF35A32E237C1FAD00A929F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF35A307237C1FAD00A929F7 /* PopCave */;
+			targetProxy = AF35A32D237C1FAD00A929F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AF35A311237C1FAD00A929F7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF35A312237C1FAD00A929F7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF35A319237C1FAD00A929F7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF35A31A237C1FAD00A929F7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF35A333237C1FAD00A929F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF35A334237C1FAD00A929F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF35A336237C1FAD00A929F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCave/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCave;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF35A337237C1FAD00A929F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCave/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCave;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AF35A339237C1FAD00A929F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCaveTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCaveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PopCave.app/PopCave";
+			};
+			name = Debug;
+		};
+		AF35A33A237C1FAD00A929F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCaveTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCaveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PopCave.app/PopCave";
+			};
+			name = Release;
+		};
+		AF35A33C237C1FAD00A929F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCaveUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCaveUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PopCave;
+			};
+			name = Debug;
+		};
+		AF35A33D237C1FAD00A929F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8LJBM9LES6;
+				INFOPLIST_FILE = PopCaveUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCaveUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PopCave;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF35A303237C1FAD00A929F7 /* Build configuration list for PBXProject "PopCave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF35A333237C1FAD00A929F7 /* Debug */,
+				AF35A334237C1FAD00A929F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF35A335237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF35A336237C1FAD00A929F7 /* Debug */,
+				AF35A337237C1FAD00A929F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF35A338237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCaveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF35A339237C1FAD00A929F7 /* Debug */,
+				AF35A33A237C1FAD00A929F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF35A33B237C1FAD00A929F7 /* Build configuration list for PBXNativeTarget "PopCaveUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF35A33C237C1FAD00A929F7 /* Debug */,
+				AF35A33D237C1FAD00A929F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */,
+			);
+			currentVersion = AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */;
+			path = PopCave.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = AF35A300237C1FAD00A929F7 /* Project object */;
+}
