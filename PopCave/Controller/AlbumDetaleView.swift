@@ -9,18 +9,22 @@
 import UIKit
 
 //TODO:- Should fill this put
-//struct albumTracks: Decodable {
-//
-//}
+struct TrackStruct: Decodable {
+    var strTrack:String?
+    var intDuration: String?
+}
 
 class AlbumDetaleView: UIViewController {
     @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var albumLbl: UILabel!
     @IBOutlet weak var artistLbl: UILabel!
     
+    var trackList = [TrackStruct]()
+    
     private var idAlbum: String? {
         didSet{
             print("Key is set! Lets look for album list")
+            loadTracks(from: idAlbum!)
         }
     }
     
@@ -46,7 +50,7 @@ class AlbumDetaleView: UIViewController {
         strAlbum = album
         idAlbum = id
         albumThumb = cover
-        print("\(strArtist ?? ":(") - \(strAlbum ?? ":-(")")
+        print(idAlbum!)
     }
 
     func configure() {
@@ -54,6 +58,37 @@ class AlbumDetaleView: UIViewController {
         albumLbl.text = strAlbum
         artistLbl.text = strArtist
     }
+    
+    
+    //theaudiodb.com/api/v1/json/1/track.php?m={albumid}
+    private func loadTracks(from albumid: String) {
+            if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/track.php?m=\(albumid)") {
+                URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+                    guard let data = data else { return }
+    //                let dataString = String(data: data, encoding: .utf8)
+    //                print(dataString ?? "Nothing")
+
+                    do {
+                        let tracks = try JSONDecoder().decode([String:[TrackStruct]].self, from: data)
+
+                        for track in tracks["track"]!{
+                            print(track.strTrack!)
+                        }
+
+                        DispatchQueue.main.async {
+                            //self.listContent = albums["loved"]!
+                            //self.collectionView.reloadData()
+                        }
+
+
+                    } catch let jsonError {
+                        print("error accured: \(jsonError)")
+                    }
+
+                }.resume()
+            }
+        }
     
     // MARK: - Table view data source
 //
