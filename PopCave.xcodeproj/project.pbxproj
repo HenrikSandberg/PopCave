@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0173DA2396C391003ECD4C /* AlbumDetaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0173D92396C391003ECD4C /* AlbumDetaleView.swift */; };
 		AF35A30C237C1FAD00A929F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30B237C1FAD00A929F7 /* AppDelegate.swift */; };
 		AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */; };
 		AF35A310237C1FAD00A929F7 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30F237C1FAD00A929F7 /* FavoriteView.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF0173D92396C391003ECD4C /* AlbumDetaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetaleView.swift; sourceTree = "<group>"; };
 		AF35A308237C1FAD00A929F7 /* PopCave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopCave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF35A30B237C1FAD00A929F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */,
 				AF35A30F237C1FAD00A929F7 /* FavoriteView.swift */,
 				AF35A341237C283D00A929F7 /* AlbumCell.swift */,
+				AF0173D92396C391003ECD4C /* AlbumDetaleView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				AF35A30C237C1FAD00A929F7 /* AppDelegate.swift in Sources */,
 				AF35A342237C283D00A929F7 /* AlbumCell.swift in Sources */,
 				AF35A316237C1FAD00A929F7 /* PopCave.xcdatamodeld in Sources */,
+				AF0173DA2396C391003ECD4C /* AlbumDetaleView.swift in Sources */,
 				AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

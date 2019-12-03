@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR8-jl-2yg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wR8-jl-2yg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,7 +72,6 @@
                                             <outlet property="artistName" destination="GFo-1h-UOK" id="InX-Ma-ego"/>
                                             <outlet property="coverArt" destination="7aD-m5-HHd" id="n82-mJ-zCg"/>
                                             <outlet property="songTitle" destination="O6B-0f-IHR" id="2k5-Yk-fAI"/>
-                                            <segue destination="r0G-0x-Upg" kind="show" id="TML-Yu-teM"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -98,20 +97,24 @@
                                     <segment title="" image="square.grid.3x2" catalog="system"/>
                                 </segments>
                             </segmentedControl>
+                            <connections>
+                                <action selector="toogleBetweenViews:" destination="BYZ-38-t0r" id="kUI-OR-LfM"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="NLm-f6-lnh" id="mae-td-8Uc"/>
+                        <segue destination="r0G-0x-Upg" kind="show" identifier="goToAlbum" id="WCK-QC-BRc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1581.1594202898552" y="182.8125"/>
         </scene>
-        <!--View Controller-->
+        <!--Album Detale View-->
         <scene sceneID="ofh-pq-Ea7">
             <objects>
-                <viewController id="r0G-0x-Upg" sceneMemberID="viewController">
+                <viewController id="r0G-0x-Upg" customClass="AlbumDetaleView" customModule="PopCave" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="klp-HS-S17">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,10 +162,15 @@
                         <viewLayoutGuide key="safeArea" id="QmO-ec-Aoy"/>
                     </view>
                     <navigationItem key="navigationItem" id="YDx-Ch-Rxa"/>
+                    <connections>
+                        <outlet property="albumLbl" destination="vpx-gE-g4t" id="RPV-Lm-Rqe"/>
+                        <outlet property="artistLbl" destination="Klz-yg-28H" id="w6J-aX-8wN"/>
+                        <outlet property="coverImg" destination="4c6-pg-jKH" id="Sw3-hK-q88"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2u-XT-rSN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2573.913043478261" y="182.8125"/>
+            <point key="canvasLocation" x="2567" y="183"/>
         </scene>
         <!--Top List-->
         <scene sceneID="FlO-pD-hZO">
