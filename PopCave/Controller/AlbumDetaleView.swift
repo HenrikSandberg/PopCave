@@ -45,11 +45,11 @@ class AlbumDetaleView: UIViewController {
         configure()
     }
     
-    func getFromCollection(artist: String, album: String, cover: UIImage, id: String) {
+    func getFromCollection(artist: String, album: String, cover: Data, id: String) {
         strArtist = artist
         strAlbum = album
         idAlbum = id
-        albumThumb = cover
+        albumThumb = UIImage(data: cover)!
         print(idAlbum!)
     }
 

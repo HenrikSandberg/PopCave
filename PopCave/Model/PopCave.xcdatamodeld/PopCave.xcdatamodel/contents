@@ -9,10 +9,13 @@
         <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="relationship" inverseEntity="Track"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="relationship" inverseEntity="Album"/>
     </entity>
     <elements>
         <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="133"/>
-        <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="58"/>
+        <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="103"/>
     </elements>
 </model>

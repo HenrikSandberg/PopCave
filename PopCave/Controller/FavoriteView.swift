@@ -20,7 +20,7 @@ struct AlbumStruct: Decodable {
 
 class FavoriteView: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
-    private var tableView = UITableView()
+//    private var tableView = UITableView()
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var albumCatalog = [Album]()
@@ -29,10 +29,6 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         
         loadTopAlbumsFromCoreData()
-        
-        if albumCatalog.count >= 0 {
-            loadTopAlbums()
-        }
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -63,18 +59,16 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
         
         do{
             albumCatalog = try context.fetch(request)
-            self.collectionView.reloadData()
+            
+            if albumCatalog.count >= 0 {
+                loadTopAlbums()
+            } else {
+                self.collectionView.reloadData()
+            }
         } catch{
             print("Error with load: \(error)")
         }
     }
-    
-//    var strArtist:String?
-//    var strAlbum:String?
-//    var strAlbumThumb:String?
-//    var idAlbum:String?
-//    var idArtist:String?
-//    var strDescription: String?
     
     func addAlbum(for album: AlbumStruct, with cover: Data?){
         let newAlbum = Album(context: context)
@@ -106,11 +100,6 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
                             if let url = URL(string: contentUrl) {
                                 do {
                                     let image = try Data(contentsOf : url)
-                                    //let image = UIImage(data : data)
-                                    
-                                    
-//                                    self.albumCovers.append(image)
-//                                    self.listContent.append(album)
                                     self.addAlbum(for: album, with: image)
                                 } catch let err {
                                     print(err)
@@ -118,13 +107,6 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
                             }
                         }
                     }
-                                    
-                    DispatchQueue.main.async {
-                        //self.listContent = albums["loved"]!
-                        self.collectionView.reloadData()
-                    }
-
-                    
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
                 }
@@ -133,7 +115,7 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    
+    //MARK:- Toggle Views
     @IBAction func toogleBetweenViews(_ sender: UIBarButtonItem) {
         print("Button pressed")
 //        UIView toView
@@ -199,15 +181,16 @@ extension FavoriteView: UICollectionViewDataSource {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? AlbumDetaleView, let index = collectionView.indexPathsForSelectedItems?.first {
+        if let destination = segue.destination as? AlbumDetaleView,
+            let index = collectionView.indexPathsForSelectedItems?.first {
+            
             let album = albumCatalog[index.row]
             destination.getFromCollection(
                 artist: album.artist!,
                 album: album.albumTitle!,
-                cover: UIImage(data: album.cover!)! ,
+                cover: album.cover!,
                 id: album.artisId!
             )
         }
-    
     }
 }
