@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+
 struct AlbumStruct: Decodable {
     var strArtist:String?
     var strAlbum:String?
@@ -18,14 +20,19 @@ struct AlbumStruct: Decodable {
 
 class FavoriteView: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
-    private var listContent = [AlbumStruct]()
-    private var albumCovers = [UIImage?]()
     private var tableView = UITableView()
     
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var albumCatalog = [Album]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTopAlbums()
+        
+        loadTopAlbumsFromCoreData()
+        
+        if albumCatalog.count >= 0 {
+            loadTopAlbums()
+        }
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -37,6 +44,52 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
     }
     
     
+    //MARK:- Context related
+    private func saveToFile() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving item: \(error)")
+        }
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func loadTopAlbumsFromCoreData(){
+        
+        let request: NSFetchRequest<Album> = Album.fetchRequest()
+        
+        do{
+            albumCatalog = try context.fetch(request)
+            self.collectionView.reloadData()
+        } catch{
+            print("Error with load: \(error)")
+        }
+    }
+    
+//    var strArtist:String?
+//    var strAlbum:String?
+//    var strAlbumThumb:String?
+//    var idAlbum:String?
+//    var idArtist:String?
+//    var strDescription: String?
+    
+    func addAlbum(for album: AlbumStruct, with cover: Data?){
+        let newAlbum = Album(context: context)
+        newAlbum.artist = album.strArtist
+        newAlbum.albumTitle = album.strAlbum
+        newAlbum.albumId = album.idAlbum
+        newAlbum.artisId = album.idArtist
+        newAlbum.cover = cover
+        
+        albumCatalog.append(newAlbum)
+        saveToFile()
+    }
+    
+    
+    //MARK:- Load Data from internett
     private func loadTopAlbums() {
         if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/mostloved.php?format=album") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -52,10 +105,13 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
                         if let contentUrl = album.strAlbumThumb {
                             if let url = URL(string: contentUrl) {
                                 do {
-                                    let data = try Data(contentsOf : url)
-                                    let image = UIImage(data : data)
-                                    self.albumCovers.append(image)
-                                    self.listContent.append(album)
+                                    let image = try Data(contentsOf : url)
+                                    //let image = UIImage(data : data)
+                                    
+                                    
+//                                    self.albumCovers.append(image)
+//                                    self.listContent.append(album)
+                                    self.addAlbum(for: album, with: image)
                                 } catch let err {
                                     print(err)
                                 }
@@ -107,7 +163,7 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
 //MARK:- All Collection view realted code
 extension FavoriteView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listContent.count
+        return albumCatalog.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -116,42 +172,41 @@ extension FavoriteView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath) as? AlbumCell else {
-            assertionFailure("Should have dequeued SongCell here")
-            return UICollectionViewCell()
-        }
-        return configured(cell, at: indexPath, with: listContent[indexPath.row])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCell", for: indexPath) as? AlbumCell
+            else {
+                assertionFailure("Should have dequeued SongCell here")
+                return UICollectionViewCell()
+            }
+        return configured(cell, at: indexPath, with: albumCatalog[indexPath.row])
     }
     
-    func configured(_ cell: AlbumCell, at indexPath: IndexPath, with content: AlbumStruct) -> AlbumCell {
+    func configured(_ cell: AlbumCell, at indexPath: IndexPath, with content: Album) -> AlbumCell {
 
-        cell.coverArt.image = self.albumCovers[indexPath.row]
-        cell.songTitle.text = content.strAlbum ?? "Hello World"
-        cell.artistName.text = content.strArtist ?? "This is an artist"
+        if let cover = content.cover {
+            cell.coverArt.image = UIImage(data: cover)
+        }
+        
+        cell.songTitle.text = content.albumTitle ?? "Hello World"
+        cell.artistName.text = content.artist ?? "This is an artist"
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Hello")
         performSegue(withIdentifier: "goToAlbum", sender: self)
         
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("Clicekd")
         if let destination = segue.destination as? AlbumDetaleView, let index = collectionView.indexPathsForSelectedItems?.first {
-            let album = listContent[index.row]
-            
-            if let cover = albumCovers[index.row] {
-                destination.getFromCollection(
-                    artist: album.strArtist!,
-                    album: album.strAlbum!,
-                    cover: cover,
-                    id: album.idAlbum!
-                )
-            }
+            let album = albumCatalog[index.row]
+            destination.getFromCollection(
+                artist: album.artist!,
+                album: album.albumTitle!,
+                cover: UIImage(data: album.cover!)! ,
+                id: album.artisId!
+            )
         }
     
     }

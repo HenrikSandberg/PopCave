@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C46a" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Album" representedClassName="Album" syncable="YES" codeGenerationType="class">
+        <attribute name="albumId" optional="YES" attributeType="String"/>
+        <attribute name="albumTitle" optional="YES" attributeType="String"/>
+        <attribute name="artisId" optional="YES" attributeType="String"/>
+        <attribute name="artist" optional="YES" attributeType="String"/>
+        <attribute name="cover" optional="YES" attributeType="Binary"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="relationship" inverseEntity="Track"/>
+    </entity>
+    <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="relationship" inverseEntity="Album"/>
+    </entity>
+    <elements>
+        <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="133"/>
+        <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="58"/>
+    </elements>
+</model>
