@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 //TODO:- Should fill this put
 struct TrackStruct: Decodable {
@@ -14,71 +15,58 @@ struct TrackStruct: Decodable {
     var intDuration: String?
 }
 
-class AlbumDetaleView: UIViewController {
+class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var albumLbl: UILabel!
     @IBOutlet weak var artistLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
-    var trackList = [TrackStruct]()
-    
-    private var idAlbum: String? {
-        didSet{
-            print("Key is set! Lets look for album list")
-            loadTracks(from: idAlbum!)
+    private var selectedAlbum: Album? {
+        didSet {
+            loadItems()
         }
     }
     
-    private var strArtist:String?
-    private var strAlbum:String?
-    var albumThumb:UIImage?
-    private var strDescription: String?
-    private var songList: [String]?
+    var trackList = [Track]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         configure()
     }
     
-    func getFromCollection(artist: String, album: String, cover: Data, id: String) {
-        strArtist = artist
-        strAlbum = album
-        idAlbum = id
-        albumThumb = UIImage(data: cover)!
-        print(idAlbum!)
+    func getData(from album: Album) {
+        selectedAlbum = album
     }
 
     func configure() {
-        coverImg.image = albumThumb
-        albumLbl.text = strAlbum
-        artistLbl.text = strArtist
+        if let album = selectedAlbum {
+            coverImg.image = UIImage(data: album.cover!)!
+            albumLbl.text = album.albumTitle!
+            artistLbl.text = album.artist!
+        }
     }
     
     
-    //theaudiodb.com/api/v1/json/1/track.php?m={albumid}
+    //MARK:- Load data from web
     private func loadTracks(from albumid: String) {
             if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/track.php?m=\(albumid)") {
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
 
                     guard let data = data else { return }
-    //                let dataString = String(data: data, encoding: .utf8)
-    //                print(dataString ?? "Nothing")
-
+                    
                     do {
                         let tracks = try JSONDecoder().decode([String:[TrackStruct]].self, from: data)
 
                         for track in tracks["track"]!{
-                            print(track.strTrack!)
+                            self.addTrack(with: track)
                         }
 
                         DispatchQueue.main.async {
-                            //self.listContent = albums["loved"]!
-                            //self.collectionView.reloadData()
+                            self.tableView.reloadData()
                         }
 
 
@@ -90,71 +78,89 @@ class AlbumDetaleView: UIViewController {
             }
         }
     
+    
+    //MARK: - File methodes
+    func saveToFile() {
+        do{
+            try context.save()
+        } catch {
+            print("Error saving item: \(error)")
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest(), withPredicate: NSPredicate? = nil) {
+        
+        let predicate = NSPredicate(format: "parentAlbum.albumId MATCHES %@", (selectedAlbum!.albumId!))
+        
+        if let otherPredicate = withPredicate {
+            let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, otherPredicate])
+            request.predicate = compundPredicate
+            
+        } else {
+            request.predicate = predicate
+        }
+        
+        
+        do{
+            trackList = try context.fetch(request)
+            
+            if trackList.count >= 0 {
+                loadTracks(from: selectedAlbum!.albumId!)
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        } catch{
+            print("Error with load: \(error)")
+        }
+        
+
+    }
+    
+    func addTrack(with data: TrackStruct) {
+        var shouldAdd = true
+        
+        for content in trackList {
+            if (content.title! == data.strTrack!) {
+                shouldAdd = false
+            }
+        }
+        
+        if shouldAdd {
+            let newTrack = Track(context: context)
+            newTrack.isFavorite = false
+            newTrack.length = data.intDuration!
+            newTrack.title = data.strTrack!
+            
+            trackList.append(newTrack)
+            saveToFile()
+        }
+    }
+    
     // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trackList.count
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as? TrackCell{
+            let track = trackList[indexPath.row]
+            cell.configure(with: track, at: indexPath.row+1)
+            return cell
+        }
+        
+        return TrackCell()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
