@@ -13,9 +13,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var songTitle: UILabel!
     
     
-    func configure(with track: Track, at num: Int) {
-        songTitle.text = "\(num). \(String(describing: track.title!))"
-        //numberLbl.text = String(num)
+    func configure(with track: Track) {
+        songTitle.text = "\(track.number). \(track.title!)"
         let image = UIImage(systemName: track.isFavorite ? "star.fill" : "star")
         addFave.setImage(image, for: .normal)
     }

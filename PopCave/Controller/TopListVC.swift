@@ -18,28 +18,32 @@ struct AlbumStruct: Decodable {
     var strDescription: String?
 }
 
-class FavoriteView: UIViewController, UICollectionViewDelegate {
+class TopListVC: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segemntController: UISegmentedControl!
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var albumCatalog = [Album]()
-    private var showInList = true
     
+    private var albumCatalog = [Album]()
+    private var showInList = false
     private var layoutType: String {
-        return showInList ? "customAlbumLineCell" : "customAlbumCell"
+        showInList ? "customAlbumLineCell" : "customAlbumCell"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadTopAlbumsFromCoreData()
-        self.collectionView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumCell")
-        
-       self.collectionView.register(UINib(nibName: "AlbumLineCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumLineCell")
-        
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        loadTopAlbumsFromCoreData()
+        
+        self.collectionView.register(
+            UINib(nibName: "AlbumCell", bundle: nil),
+            forCellWithReuseIdentifier: "customAlbumCell")
+        
+        self.collectionView.register(
+            UINib(nibName: "AlbumLineCell", bundle: nil),
+            forCellWithReuseIdentifier: "customAlbumLineCell")
         
         showInList = UserDefaults.standard.bool(forKey: "displayMode")
         segemntController.selectedSegmentIndex = showInList ? 1 : 0
@@ -47,7 +51,7 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
     }
     
     
-    //MARK:- Context related
+    //MARK:- Context Handling
     private func saveToFile() {
         do {
             try context.save()
@@ -60,27 +64,20 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    func loadTopAlbumsFromCoreData(){
+    private func loadTopAlbumsFromCoreData() {
         
         let request: NSFetchRequest<Album> = Album.fetchRequest()
         
-        do{
+        do {
             albumCatalog = try context.fetch(request)
             
-            if (albumCatalog.count < 50) {
+            if albumCatalog.count < 50 {
                 
-                let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-                let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-                loadingIndicator.hidesWhenStopped = true
-                loadingIndicator.style = UIActivityIndicatorView.Style.medium
-                loadingIndicator.startAnimating();
-
-                alert.view.addSubview(loadingIndicator)
+                let alert = createLoader()
+                
                 present(alert, animated: true, completion: nil)
                 
                 loadTopAlbums()
-                
                 
                 dismiss(animated: true, completion: nil)
             } else {
@@ -89,16 +86,16 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
                 }
             }
             
-        } catch{
+        } catch {
             print("Error with load: \(error)")
         }
     }
     
-    func addAlbum(for album: AlbumStruct, with cover: Data?){
+    private func addAlbum(for album: AlbumStruct, with cover: Data?){
         var shouldAdd = true
         
         for content in albumCatalog {
-            if (content.albumTitle! == album.strAlbum!) {
+            if content.albumTitle! == album.strAlbum! {
                 shouldAdd = false
             }
         }
@@ -115,21 +112,28 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
             albumCatalog.append(newAlbum)
             saveToFile()
         }
+    }
+    
+    private func createLoader() -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating()
         
+        alert.view.addSubview(loadingIndicator)
+        return alert
     }
     
     
     //MARK:- Load Data from internett
     private func loadTopAlbums() {
         
-        //displayLoading()
-        
         if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/mostloved.php?format=album") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
                 guard let data = data else { return }
-//                let dataString = String(data: data, encoding: .utf8)
-//                print(dataString ?? "Nothing")
                 
                 do {
                     let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
@@ -156,7 +160,6 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
     
     //MARK:- Toggle Views
     @IBAction func clickOnSegment(_ sender: UISegmentedControl) {
-        
         showInList = !showInList
         
         UserDefaults.standard.set(showInList, forKey: "displayMode")
@@ -166,8 +169,9 @@ class FavoriteView: UIViewController, UICollectionViewDelegate {
 }
 
 
-//MARK:- All Collection view realted code
-extension FavoriteView: UICollectionViewDataSource {
+//MARK:- Collection view
+extension TopListVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albumCatalog.count
     }
@@ -183,6 +187,7 @@ extension FavoriteView: UICollectionViewDataSource {
                 assertionFailure("Should have dequeued AlbumCell here")
                 return UICollectionViewCell()
             }
+        
         return configured(cell, at: indexPath, with: albumCatalog[indexPath.row])
     }
     
@@ -218,9 +223,7 @@ extension FavoriteView: UICollectionViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AlbumDetaleView,
             let index = collectionView.indexPathsForSelectedItems?.first {
-            
-            let album = albumCatalog[index.row]
-            destination.getData(from: album)
+            destination.getData(from: albumCatalog[index.row])
         }
     }
 }

@@ -5,18 +5,15 @@ class AlbumCell: UICollectionViewCell {
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var albumImg: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     func configure(with album:Album) {
-        if let cover = album.cover {
-            let img = UIImage(data: cover)
-            albumImg.image = img
-        }
-        songTitle.text = album.albumTitle ?? "Hello World"
+        albumImg.image = UIImage(data: album.cover!) ?? UIImage(named: "empty")
+        songTitle.text = album.albumTitle ?? "This is a title"
         artistName.text = album.artist ?? "This is an artist"
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+
 }

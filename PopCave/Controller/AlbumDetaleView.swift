@@ -11,11 +11,13 @@ import CoreData
 
 //TODO:- Should fill this put
 struct TrackStruct: Decodable {
-    var strTrack:String?
+    var strTrack: String?
     var intDuration: String?
+    var intTrackNumber: String?
+    var idTrack: String?
 }
 
-class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AlbumDetaleView: UIViewController {
     @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var albumLbl: UILabel!
     @IBOutlet weak var artistLbl: UILabel!
@@ -61,7 +63,7 @@ class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSou
                     do {
                         let tracks = try JSONDecoder().decode([String:[TrackStruct]].self, from: data)
 
-                        for track in tracks["track"]!{
+                        for track in tracks["track"]! {
                             self.addTrack(with: track)
                         }
 
@@ -92,29 +94,21 @@ class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
-    func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest(), withPredicate: NSPredicate? = nil) {
+    func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest()) {
         
         let predicate = NSPredicate(format: "parentAlbum.albumId MATCHES %@", (selectedAlbum!.albumId!))
-        
-        if let otherPredicate = withPredicate {
-            let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, otherPredicate])
-            request.predicate = compundPredicate
-            
-        } else {
-            request.predicate = predicate
-        }
+        request.predicate = predicate
         
         
-        do{
+        do {
             trackList = try context.fetch(request)
             
-            if trackList.count >= 0 {
+            if trackList.count <= 0 {
                 loadTracks(from: selectedAlbum!.albumId!)
-            } else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
             }
+            
+            trackList.sort(by: {$0.number < $1.number})
+            
             
         } catch{
             print("Error with load: \(error)")
@@ -137,13 +131,19 @@ class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSou
             newTrack.isFavorite = false
             newTrack.length = data.intDuration!
             newTrack.title = data.strTrack!
+            newTrack.parentAlbum = selectedAlbum
+            newTrack.trackId = Int32(data.idTrack!)!
+            newTrack.number = Int32(data.intTrackNumber!)!
             
             trackList.append(newTrack)
             saveToFile()
         }
     }
+}
     
-    // MARK: - Table view data source
+// MARK: - Table view
+extension AlbumDetaleView: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -156,11 +156,19 @@ class AlbumDetaleView: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as? TrackCell{
             let track = trackList[indexPath.row]
-            cell.configure(with: track, at: indexPath.row+1)
+            cell.configure(with: track)
             return cell
         }
         
         return TrackCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        trackList[indexPath.row].isFavorite = !trackList[indexPath.row].isFavorite
+        
+        tableView.reloadData()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
