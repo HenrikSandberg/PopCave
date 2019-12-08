@@ -193,7 +193,6 @@ extension TopListVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToAlbum", sender: self)
-        
     }
     
     private func updateLayout() {
@@ -205,7 +204,7 @@ extension TopListVC: UICollectionViewDataSource {
                 itemWidth = CGFloat(149)
                 itemHeight = CGFloat(200)
             } else {
-                itemWidth = view.bounds.width //- CGFloat(16)
+                itemWidth = view.bounds.width - CGFloat(16)
                 itemHeight = CGFloat(95)
             }
             
@@ -216,7 +215,7 @@ extension TopListVC: UICollectionViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? AlbumDetaleView,
+        if let destination = segue.destination as? AlbumVC,
             let index = collectionView.indexPathsForSelectedItems?.first {
             destination.getData(from: albumCatalog[index.row])
         }

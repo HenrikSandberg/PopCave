@@ -41,8 +41,6 @@ class FavoriteVC: UIViewController {
         getRecomendations()
     }
     
-    
-    
     //MARK:- Context Handling
     private func saveToFile(reload: Bool) {
         do {
@@ -191,5 +189,18 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "recomendationDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? AlbumVC,
+            let index = collectionView.indexPathsForSelectedItems?.first {
+            
+            //destination.getData(from: albumCatalog[index.row])
+        }
+    }
+    
 }
 

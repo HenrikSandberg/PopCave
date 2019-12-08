@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class AlbumDetaleView: UIViewController {
+class AlbumVC: UIViewController {
     @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var albumLbl: UILabel!
     @IBOutlet weak var artistLbl: UILabel!
@@ -31,8 +31,10 @@ class AlbumDetaleView: UIViewController {
         tableView.dataSource = self
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         configure()
+        tableView.reloadData()
     }
     
     func getData(from album: Album) {
@@ -77,7 +79,7 @@ class AlbumDetaleView: UIViewController {
     
     
     //MARK: - File methodes
-    func saveToFile() {
+    private func saveToFile() {
         do{
             try context.save()
         } catch {
@@ -89,7 +91,7 @@ class AlbumDetaleView: UIViewController {
         }
     }
     
-    func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest()) {
+    private func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest()) {
         
         let predicate = NSPredicate(format: "parentAlbum.albumId MATCHES %@", (selectedAlbum!.albumId!))
         request.predicate = predicate
@@ -108,11 +110,9 @@ class AlbumDetaleView: UIViewController {
         } catch{
             print("Error with load: \(error)")
         }
-        
-
     }
     
-    func addTrack(with data: TrackStruct) {
+    private func addTrack(with data: TrackStruct) {
         var shouldAdd = true
         
         for content in trackList {
@@ -137,7 +137,7 @@ class AlbumDetaleView: UIViewController {
 }
     
 // MARK: - Table view
-extension AlbumDetaleView: UITableViewDelegate, UITableViewDataSource {
+extension AlbumVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
