@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFavoriteCell" rowHeight="85" id="KGk-i7-Jjw" customClass="FavoriteCell" customModule="PopCave" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsA-wQ-g14">
+                        <rect key="frame" x="83" y="34.5" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:38" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRV-Um-04z">
+                        <rect key="frame" x="265" y="32.5" width="50" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="rXE-SC-Fog"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="5q4-jd-kjX">
+                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="DqH-5p-COP"/>
+                            <constraint firstAttribute="width" constant="70" id="f8M-QI-7vB"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIs-aS-PSv">
+                        <rect key="frame" x="83" y="8" width="187" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MsA-wQ-g14" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="5" id="9iR-ha-odn"/>
+                    <constraint firstAttribute="trailing" secondItem="gIs-aS-PSv" secondAttribute="trailing" constant="50" id="Ex5-Pm-fUx"/>
+                    <constraint firstAttribute="bottom" secondItem="5q4-jd-kjX" secondAttribute="bottom" constant="7" id="KLh-YY-z9p"/>
+                    <constraint firstItem="uRV-Um-04z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ki3-yc-hND"/>
+                    <constraint firstAttribute="trailing" secondItem="uRV-Um-04z" secondAttribute="trailing" constant="5" id="UoP-NE-ZSt"/>
+                    <constraint firstItem="5q4-jd-kjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="apT-0L-8OL"/>
+                    <constraint firstItem="gIs-aS-PSv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fka-ac-8aa"/>
+                    <constraint firstItem="gIs-aS-PSv" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="5" id="gfp-64-tNc"/>
+                    <constraint firstItem="MsA-wQ-g14" firstAttribute="top" secondItem="gIs-aS-PSv" secondAttribute="bottom" constant="5" id="pRs-JH-g1b"/>
+                    <constraint firstItem="5q4-jd-kjX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="vwx-GK-ftg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="albumCoverImg" destination="5q4-jd-kjX" id="n5k-0Z-8cO"/>
+                <outlet property="artistLbl" destination="MsA-wQ-g14" id="Sp5-Vg-xKQ"/>
+                <outlet property="playTimelbl" destination="uRV-Um-04z" id="eVU-BH-mde"/>
+                <outlet property="songlbl" destination="gIs-aS-PSv" id="Ml3-o8-mfc"/>
+            </connections>
+            <point key="canvasLocation" x="-62.318840579710148" y="157.70089285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="empty" width="256" height="256"/>
+    </resources>
+</document>

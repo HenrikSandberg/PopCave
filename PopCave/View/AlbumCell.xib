@@ -15,31 +15,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="149" height="193"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="ReW-hm-zHb">
-                        <rect key="frame" x="8" y="8" width="134" height="134"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="ReW-hm-zHb">
+                        <rect key="frame" x="8" y="8" width="133" height="134"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="134" id="13h-kp-Ahr"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-E6-eZ3">
-                        <rect key="frame" x="8" y="150" width="134" height="14.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-E6-eZ3">
+                        <rect key="frame" x="8" y="147" width="133" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCV-pk-XbM">
-                        <rect key="frame" x="8" y="169" width="134" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCV-pk-XbM">
+                        <rect key="frame" x="8" y="166.5" width="133" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8Wt-E6-eZ3" secondAttribute="trailing" constant="8" id="11H-Y8-nzH"/>
+                <constraint firstAttribute="trailing" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="DVd-gH-tx4"/>
+                <constraint firstItem="ReW-hm-zHb" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="H9N-OR-ytF"/>
+                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="N0M-Fl-zSK"/>
+                <constraint firstItem="ReW-hm-zHb" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="SsL-gp-v3I"/>
+                <constraint firstAttribute="trailing" secondItem="LCV-pk-XbM" secondAttribute="trailing" constant="8" id="W5n-S9-l1C"/>
+                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="top" secondItem="ReW-hm-zHb" secondAttribute="bottom" constant="5" id="aDI-KY-VY8"/>
+                <constraint firstItem="LCV-pk-XbM" firstAttribute="top" secondItem="8Wt-E6-eZ3" secondAttribute="bottom" constant="5" id="hXC-Sj-RDl"/>
+                <constraint firstItem="LCV-pk-XbM" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="k0I-TA-3s6"/>
+            </constraints>
             <size key="customSize" width="149" height="193"/>
             <connections>
                 <outlet property="albumImg" destination="ReW-hm-zHb" id="J8O-bn-UWz"/>

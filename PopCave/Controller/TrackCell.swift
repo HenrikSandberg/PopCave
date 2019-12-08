@@ -9,13 +9,13 @@
 import UIKit
 
 class TrackCell: UITableViewCell {
-    @IBOutlet weak var addFave: UIButton!
+    @IBOutlet weak var addFave: UIImageView!
     @IBOutlet weak var songTitle: UILabel!
     
     
     func configure(with track: Track) {
         songTitle.text = "\(track.number). \(track.title!)"
         let image = UIImage(systemName: track.isFavorite ? "star.fill" : "star")
-        addFave.setImage(image, for: .normal)
+        addFave.image = image
     }
 }

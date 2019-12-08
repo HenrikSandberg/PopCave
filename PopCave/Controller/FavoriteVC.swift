@@ -9,110 +9,184 @@
 import UIKit
 import CoreData
 
-class FavoriteVC: UITableViewController {
-    private var trackArray = [Track]()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+struct RecomendationStruct: Decodable {
+    var Name: String?
+}
 
+class FavoriteVC: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var trackArray = [Track]()
+    private var recomendationArray = [String]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: "FavoriteCell", bundle: nil), forCellReuseIdentifier: "customFavoriteCell")
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadItems()
+        getRecomendations()
     }
     
     
+    
     //MARK:- Context Handling
-    private func saveToFile() {
+    private func saveToFile(reload: Bool) {
         do {
             try context.save()
         } catch {
             print("Error saving item: \(error)")
         }
         
-        tableView.reloadData()
+        if reload {
+            tableView.reloadData()
+        }
     }
     
-    private func loadItems(_ request: NSFetchRequest<Track> = Track.fetchRequest()) {
-        //request.predicate = NSPredicate(format: "parentCategory.name MATCHES %@", category.name!)
+    private func updateItem(at index: Int) {
+        trackArray[index].isFavorite = false
+        //context.delete(trackArray[index])
+        saveToFile(reload: false)
+        trackArray.remove(at: index)
+    }
+    
+    
+    //MARK:- Load items
+    func loadItems() {
         do {
+            let request: NSFetchRequest<Track> = Track.fetchRequest()
             let items = try context.fetch(request)
             
             for item in items {
                 if item.isFavorite {
-                    trackArray.append(item)
+                    if !trackArray.contains(item) {
+                        trackArray.append(item)
+                    }
                 }
             }
+            
+            trackArray.sort(by: {$0.trackId < $1.trackId})
             
             tableView.reloadData()
         } catch {
             print("Error with load: \(error)")
         }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    
+    //MARK:- Recomendations
+    
+    private func getRecomendations() {
+        var baseUrl = "https://tastedive.com/api/similar?q="
+        var artistArray = [String]()
+        
+        for track in trackArray {
+            var trackString = track.parentAlbum!.artist!
+            trackString = trackString.replacingOccurrences(of: " ", with: "+")
+            if !artistArray.contains(trackString) {
+                artistArray.append(trackString)
+            }
+        }
+        
+        for number in Range(0...artistArray.count-1) {
+            if (number < artistArray.count-1) {
+                baseUrl = "\(baseUrl)\(artistArray[number])%2C"
+            } else {
+                baseUrl = "\(baseUrl)\(artistArray[number])"
+            }
+        }
+        
+        if let url = URL(string: baseUrl) {
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                guard let data = data else { return }
+                
+                do {
+                    let artists = try JSONDecoder().decode([String:[String:[RecomendationStruct]]].self, from: data)
+                    var artistArray = [String]()
+                    
+                    if let artistCollection =  artists["Similar"]?["Results"]{
+                        for artist in artistCollection {
+                              if let name = artist.Name {
+                                  artistArray.append(name)
+                              }
+                          }
+                        self.recomendationArray = artistArray
+                    }
+  
+                } catch let jsonError {
+                    print("error accured: \(jsonError)")
+                }
+                
+            }.resume()
+        }
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trackArray.count
+// MARK: - Table view data source
+extension FavoriteVC: UITableViewDelegate, UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+         return 1
+     }
+
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return trackArray.count
+     }
+
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: "customFavoriteCell", for: indexPath) as! FavoriteCell
+         cell.configure(with: trackArray[indexPath.row])
+         return cell
+     }
+
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+         if editingStyle == .delete {
+             
+             let alert = UIAlertController(title: "Would you like to remove \(self.trackArray[indexPath.row].title!) from your favorites?", message: "", preferredStyle: .alert)
+             
+             alert.addAction(UIAlertAction(title: "Cancel", style: .default) { cancel in
+                 alert.dismiss(animated: true, completion: nil)
+             })
+             
+             alert.addAction(UIAlertAction(title: "Remove", style: .default) { action in
+                 self.updateItem(at: indexPath.row)
+                 tableView.deleteRows(at: [indexPath], with: .fade)
+             })
+             
+             present(alert, animated: true, completion: nil)
+
+         }
+     }
+}
+
+//MARK:- Collection View
+extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return recomendationArray.count
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recomendationCell", for: indexPath)
+        cell.backgroundColor = .red
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

@@ -9,17 +9,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="customAlbumLineCell" id="S1P-e5-yYK" customClass="AlbumCell" customModule="PopCave" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="307" height="89"/>
+            <rect key="frame" x="0.0" y="0.0" width="307" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="307" height="89"/>
+                <rect key="frame" x="0.0" y="0.0" width="307" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="ReW-hm-zHb">
                         <rect key="frame" x="8" y="8" width="73" height="73"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="73" id="WpW-lG-8Pf"/>
-                            <constraint firstAttribute="width" constant="73" id="oUm-zD-w6s"/>
+                            <constraint firstAttribute="width" constant="73" id="H9w-yf-gWy"/>
+                            <constraint firstAttribute="height" constant="73" id="XG5-Iv-PI5"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -27,7 +27,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-E6-eZ3">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-E6-eZ3">
                         <rect key="frame" x="89" y="15" width="210" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
@@ -42,23 +42,22 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="LCV-pk-XbM" secondAttribute="trailing" constant="8" id="F1E-4y-ZfC"/>
-                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="FVc-WI-QbO"/>
-                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="15" id="PCo-Ge-5C9"/>
-                <constraint firstItem="LCV-pk-XbM" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="QLk-ak-sny"/>
-                <constraint firstAttribute="trailing" secondItem="8Wt-E6-eZ3" secondAttribute="trailing" constant="8" id="Qi3-1H-ewx"/>
-                <constraint firstItem="LCV-pk-XbM" firstAttribute="top" secondItem="8Wt-E6-eZ3" secondAttribute="bottom" constant="5" id="eyz-oU-QFq"/>
-                <constraint firstItem="ReW-hm-zHb" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="h5l-Wo-iJX"/>
-                <constraint firstItem="ReW-hm-zHb" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="kwg-wl-quu"/>
-                <constraint firstAttribute="bottom" secondItem="ReW-hm-zHb" secondAttribute="bottom" constant="8" id="oyQ-f7-Kux"/>
+                <constraint firstItem="LCV-pk-XbM" firstAttribute="top" secondItem="8Wt-E6-eZ3" secondAttribute="bottom" constant="5" id="Ejm-nc-JlO"/>
+                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="15" id="Ine-FU-ztq"/>
+                <constraint firstItem="ReW-hm-zHb" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="PVh-9x-FDS"/>
+                <constraint firstItem="LCV-pk-XbM" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="WVr-da-gX0"/>
+                <constraint firstAttribute="trailing" secondItem="LCV-pk-XbM" secondAttribute="trailing" constant="8" id="egw-KR-1af"/>
+                <constraint firstAttribute="trailing" secondItem="8Wt-E6-eZ3" secondAttribute="trailing" constant="8" id="m62-oQ-ypE"/>
+                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="rEV-Gs-Kvo"/>
+                <constraint firstItem="ReW-hm-zHb" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="vfK-LN-26j"/>
             </constraints>
-            <size key="customSize" width="307" height="89"/>
+            <size key="customSize" width="307" height="90"/>
             <connections>
                 <outlet property="albumImg" destination="ReW-hm-zHb" id="J8O-bn-UWz"/>
                 <outlet property="artistName" destination="LCV-pk-XbM" id="ubN-ua-cIE"/>
                 <outlet property="songTitle" destination="8Wt-E6-eZ3" id="Zaj-Xf-qob"/>
             </connections>
-            <point key="canvasLocation" x="181.8840579710145" y="96.09375"/>
+            <point key="canvasLocation" x="181.8840579710145" y="96.428571428571431"/>
         </collectionViewCell>
     </objects>
     <resources>

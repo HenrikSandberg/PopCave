@@ -36,7 +36,9 @@ class AlbumDetaleView: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         configure()
     }
     
@@ -165,9 +167,9 @@ extension AlbumDetaleView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         trackList[indexPath.row].isFavorite = !trackList[indexPath.row].isFavorite
+        saveToFile()
         
         tableView.reloadData()
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
