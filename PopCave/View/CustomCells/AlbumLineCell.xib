@@ -61,7 +61,7 @@
             </constraints>
             <size key="customSize" width="307" height="90"/>
             <connections>
-                <outlet property="albumImg" destination="H9j-N4-I3I" id="ODM-ug-K7T"/>
+                <outlet property="albumImg" destination="H9j-N4-I3I" id="4kg-Zt-0yf"/>
                 <outlet property="artistName" destination="JqN-v1-ZkH" id="U05-7Z-O6k"/>
                 <outlet property="songTitle" destination="bCq-wO-0Ku" id="kvR-07-Zyk"/>
             </connections>

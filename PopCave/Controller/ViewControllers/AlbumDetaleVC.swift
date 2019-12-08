@@ -9,13 +9,6 @@
 import UIKit
 import CoreData
 
-//TODO:- Should fill this put
-struct TrackStruct: Decodable {
-    var strTrack: String?
-    var intDuration: String?
-    var intTrackNumber: String?
-    var idTrack: String?
-}
 
 class AlbumDetaleView: UIViewController {
     @IBOutlet weak var coverImg: UIImageView!

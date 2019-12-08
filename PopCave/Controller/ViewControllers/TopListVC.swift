@@ -9,15 +9,6 @@
 import UIKit
 import CoreData
 
-struct AlbumStruct: Decodable {
-    var strArtist:String?
-    var strAlbum:String?
-    var strAlbumThumb:String?
-    var idAlbum:String?
-    var idArtist:String?
-    var strDescription: String?
-}
-
 class TopListVC: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segemntController: UISegmentedControl!
@@ -212,9 +203,9 @@ extension TopListVC: UICollectionViewDataSource {
             
             if !showInList {
                 itemWidth = CGFloat(149)
-                itemHeight = CGFloat(195)
+                itemHeight = CGFloat(200)
             } else {
-                itemWidth = view.bounds.width - CGFloat(16)
+                itemWidth = view.bounds.width //- CGFloat(16)
                 itemHeight = CGFloat(95)
             }
             

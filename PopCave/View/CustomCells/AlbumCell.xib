@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="albumCell" reuseIdentifier="customAlbumCell" id="S1P-e5-yYK" customClass="AlbumCell" customModule="PopCave" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="149" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="149" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77H-gj-qHe">
+                        <rect key="frame" x="0.0" y="0.0" width="149" height="200"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="HsQ-uk-Hfe">
+                        <rect key="frame" x="7" y="8" width="135" height="135"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="135" id="68C-kr-VNU"/>
+                            <constraint firstAttribute="width" constant="135" id="nB2-nG-ecR"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D84-K0-Avi">
+                        <rect key="frame" x="8" y="151" width="133" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsX-TZ-TBI">
+                        <rect key="frame" x="8" y="170.5" width="133" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="77H-gj-qHe" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" id="3Is-2U-Sb9"/>
+                <constraint firstAttribute="bottom" secondItem="77H-gj-qHe" secondAttribute="bottom" id="AGx-ej-vvH"/>
+                <constraint firstItem="gsX-TZ-TBI" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="PjB-27-4EY"/>
+                <constraint firstItem="HsQ-uk-Hfe" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="PuG-Lo-1g1"/>
+                <constraint firstAttribute="trailing" secondItem="gsX-TZ-TBI" secondAttribute="trailing" constant="8" id="dC2-Tm-A2J"/>
+                <constraint firstItem="D84-K0-Avi" firstAttribute="top" secondItem="HsQ-uk-Hfe" secondAttribute="bottom" constant="8" id="dyQ-oy-Alx"/>
+                <constraint firstItem="gsX-TZ-TBI" firstAttribute="centerX" secondItem="S1P-e5-yYK" secondAttribute="centerX" id="eGk-CF-YzJ"/>
+                <constraint firstItem="gsX-TZ-TBI" firstAttribute="top" secondItem="D84-K0-Avi" secondAttribute="bottom" constant="5" id="f6Z-Cz-nPf"/>
+                <constraint firstAttribute="trailing" secondItem="77H-gj-qHe" secondAttribute="trailing" id="gUc-ab-jX5"/>
+                <constraint firstAttribute="trailing" secondItem="D84-K0-Avi" secondAttribute="trailing" constant="8" id="jc2-Of-yGN"/>
+                <constraint firstItem="D84-K0-Avi" firstAttribute="centerX" secondItem="S1P-e5-yYK" secondAttribute="centerX" id="kli-6n-uAm"/>
+                <constraint firstItem="77H-gj-qHe" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" id="pG6-Vh-A8U"/>
+                <constraint firstItem="HsQ-uk-Hfe" firstAttribute="centerX" secondItem="S1P-e5-yYK" secondAttribute="centerX" id="x0o-tm-qj3"/>
+                <constraint firstItem="D84-K0-Avi" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="z3b-cA-qI3"/>
+            </constraints>
+            <size key="customSize" width="149" height="200"/>
+            <connections>
+                <outlet property="albumImg" destination="HsQ-uk-Hfe" id="QYK-EN-Nb6"/>
+                <outlet property="artistName" destination="gsX-TZ-TBI" id="K8C-lp-VSh"/>
+                <outlet property="songTitle" destination="D84-K0-Avi" id="fRc-Bf-n2B"/>
+            </connections>
+            <point key="canvasLocation" x="52.898550724637687" y="52.901785714285715"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="empty" width="256" height="256"/>
+    </resources>
+</document>

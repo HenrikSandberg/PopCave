@@ -284,6 +284,7 @@
                                         <connections>
                                             <outlet property="image" destination="hNn-uc-fdo" id="w1X-30-c7f"/>
                                             <outlet property="text" destination="s6X-6W-WL8" id="WdD-0l-p3j"/>
+                                            <segue destination="iCW-tP-Ttf" kind="show" id="QU1-AD-457"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -311,10 +312,26 @@
             </objects>
             <point key="canvasLocation" x="1579.7101449275362" y="1826.7857142857142"/>
         </scene>
-        <!--Table View Controller-->
+        <!--View Controller-->
+        <scene sceneID="NPR-PL-kbb">
+            <objects>
+                <viewController id="iCW-tP-Ttf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b8i-Mc-P9G">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="nbZ-nO-a0p"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ztf-gj-D5M"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ekl-Pe-YdG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2909" y="1760"/>
+        </scene>
+        <!--SearchVC-->
         <scene sceneID="hnr-T0-8HW">
             <objects>
-                <tableViewController id="GzS-FQ-t0k" sceneMemberID="viewController">
+                <tableViewController id="GzS-FQ-t0k" customClass="SearchVC" customModule="PopCave" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qDn-iW-HdJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,6 +340,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="GzS-FQ-t0k" id="nkV-iu-oOj"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="protoCell" rowHeight="80" id="JfG-El-xs4">
@@ -391,7 +411,7 @@
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
         <image name="star" catalog="system" width="64" height="58"/>
         <namedColor name="brandColor">
-            <color red="0.94117647058823528" green="0.38431372549019605" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94099998474121094" green="0.38400000333786011" blue="0.43900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

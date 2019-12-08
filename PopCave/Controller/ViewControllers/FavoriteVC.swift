@@ -9,25 +9,13 @@
 import UIKit
 import CoreData
 
-struct RecomendationStruct: Decodable {
-    var Name: String?
-}
-
-struct ArtistStruct:Decodable {
-    var strArtist: String?
-    var strStyle: String?
-    var strBiographyEN: String?
-    var strCountry: String?
-    var strArtistThumb: String?
-}
-
 class FavoriteVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var trackArray = [Track]()
     private var recomendationArray = [String]() {
-        didSet {            
+        didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -100,8 +88,8 @@ class FavoriteVC: UIViewController {
     
     
     //MARK:- Recomendations
-    
     private func getRecomendations() {
+        
         var baseUrl = "https://tastedive.com/api/similar?q="
         var artistArray = [String]()
         
@@ -124,6 +112,8 @@ class FavoriteVC: UIViewController {
                 baseUrl = "\(baseUrl)\(artistArray[number])"
             }
         }
+        
+        baseUrl = "\(baseUrl)/k=\(RECKEY)"
         
         if let url = URL(string: baseUrl) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -148,39 +138,7 @@ class FavoriteVC: UIViewController {
                 }
             }.resume()
         }
-    }
-    
-    private func getArtistData(_ name: String){
-        var urlString = name.lowercased()
-        urlString = urlString.replacingOccurrences(of: " ", with: "%20")
-        urlString = "​https://www.theaudiodb.com/api/v1/json/1/search.php?s=\(urlString)"
         
-        if let url = URL(string: urlString) {
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
-                guard let data = data else { return }
-                
-                print("SESION STARTS")
-                
-                do {
-                    let artist = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
-                    
-                    print("------------------------------------------------------------------------")
-                    print(artist)
-                    print("------------------------------------------------------------------------")
-                    
-
-                } catch let jsonError {
-                    print("error accured: \(jsonError)")
-                }
-                
-            }.resume()
-        } else {
-            print("------------------------------------------------------------------------")
-            print(urlString)
-            print("------------------------------------------------------------------------")
-        }
     }
 }
 
