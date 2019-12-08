@@ -244,20 +244,47 @@
                                     <constraint firstAttribute="height" constant="136" id="FbA-D3-yvE"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xk1-7B-R7q">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="123" height="136"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recomendationCell" id="wtL-vQ-76e">
-                                        <rect key="frame" x="0.0" y="0.5" width="124" height="135"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="artistCell" id="9mm-yu-lfX" customClass="ArtistCell" customModule="PopCave" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="123" height="136"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0v1-ph-7y9">
-                                            <rect key="frame" x="0.0" y="0.0" width="124" height="135"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Xbq-iX-hy1">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hNn-uc-fdo">
+                                                    <rect key="frame" x="20" y="8.5" width="83" height="79"/>
+                                                    <color key="tintColor" name="brandColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="c2G-QZ-pdK"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6X-6W-WL8">
+                                                    <rect key="frame" x="8" y="93" width="107" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="hNn-uc-fdo" secondAttribute="trailing" constant="20" id="5ev-wz-PY4"/>
+                                                <constraint firstItem="hNn-uc-fdo" firstAttribute="top" secondItem="Xbq-iX-hy1" secondAttribute="top" constant="8" id="9xn-WR-Iog"/>
+                                                <constraint firstItem="hNn-uc-fdo" firstAttribute="leading" secondItem="Xbq-iX-hy1" secondAttribute="leading" constant="20" id="IFX-eR-gHO"/>
+                                                <constraint firstItem="s6X-6W-WL8" firstAttribute="leading" secondItem="Xbq-iX-hy1" secondAttribute="leading" constant="8" id="Uvm-Lw-6Rt"/>
+                                                <constraint firstItem="s6X-6W-WL8" firstAttribute="top" secondItem="hNn-uc-fdo" secondAttribute="bottom" constant="5" id="g8G-qH-WfD"/>
+                                                <constraint firstAttribute="trailing" secondItem="s6X-6W-WL8" secondAttribute="trailing" constant="8" id="kpc-V8-GGI"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="124" height="135"/>
+                                        <size key="customSize" width="123" height="136"/>
+                                        <connections>
+                                            <outlet property="image" destination="hNn-uc-fdo" id="w1X-30-c7f"/>
+                                            <outlet property="text" destination="s6X-6W-WL8" id="WdD-0l-p3j"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -360,6 +387,7 @@
     <resources>
         <image name="empty" width="256" height="256"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
         <image name="star" catalog="system" width="64" height="58"/>
         <namedColor name="brandColor">

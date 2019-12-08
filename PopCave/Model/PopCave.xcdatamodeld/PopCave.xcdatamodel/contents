@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C46a" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19C56a" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Album" representedClassName="Album" syncable="YES" codeGenerationType="class">
         <attribute name="albumId" optional="YES" attributeType="String"/>
         <attribute name="albumTitle" optional="YES" attributeType="String"/>
         <attribute name="artisId" optional="YES" attributeType="String"/>
         <attribute name="artist" optional="YES" attributeType="String"/>
         <attribute name="cover" optional="YES" attributeType="Binary"/>
+        <attribute name="top50Album" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="track" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="parentAlbum" inverseEntity="Track"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
@@ -17,7 +18,7 @@
         <relationship name="parentAlbum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="track" inverseEntity="Album"/>
     </entity>
     <elements>
-        <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="133"/>
+        <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="148"/>
         <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="133"/>
     </elements>
 </model>

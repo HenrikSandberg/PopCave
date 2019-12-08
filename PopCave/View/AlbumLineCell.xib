@@ -15,11 +15,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="ReW-hm-zHb">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kH2-3e-DuL">
+                        <rect key="frame" x="0.0" y="0.0" width="307" height="90"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="H9j-N4-I3I">
                         <rect key="frame" x="8" y="8" width="73" height="73"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="73" id="H9w-yf-gWy"/>
-                            <constraint firstAttribute="height" constant="73" id="XG5-Iv-PI5"/>
+                            <constraint firstAttribute="height" constant="73" id="9P0-pt-aT3"/>
+                            <constraint firstAttribute="width" constant="73" id="jKM-0Q-pkB"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -27,14 +31,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-E6-eZ3">
-                        <rect key="frame" x="89" y="15" width="210" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCq-wO-0Ku">
+                        <rect key="frame" x="86" y="17" width="213" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCV-pk-XbM">
-                        <rect key="frame" x="89" y="44" width="210" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A long name breaks me" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqN-v1-ZkH">
+                        <rect key="frame" x="86" y="46" width="213" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -42,20 +46,24 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="LCV-pk-XbM" firstAttribute="top" secondItem="8Wt-E6-eZ3" secondAttribute="bottom" constant="5" id="Ejm-nc-JlO"/>
-                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="15" id="Ine-FU-ztq"/>
-                <constraint firstItem="ReW-hm-zHb" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="PVh-9x-FDS"/>
-                <constraint firstItem="LCV-pk-XbM" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="WVr-da-gX0"/>
-                <constraint firstAttribute="trailing" secondItem="LCV-pk-XbM" secondAttribute="trailing" constant="8" id="egw-KR-1af"/>
-                <constraint firstAttribute="trailing" secondItem="8Wt-E6-eZ3" secondAttribute="trailing" constant="8" id="m62-oQ-ypE"/>
-                <constraint firstItem="8Wt-E6-eZ3" firstAttribute="leading" secondItem="ReW-hm-zHb" secondAttribute="trailing" constant="8" id="rEV-Gs-Kvo"/>
-                <constraint firstItem="ReW-hm-zHb" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="vfK-LN-26j"/>
+                <constraint firstAttribute="trailing" secondItem="kH2-3e-DuL" secondAttribute="trailing" id="3jN-Af-z2A"/>
+                <constraint firstItem="bCq-wO-0Ku" firstAttribute="leading" secondItem="H9j-N4-I3I" secondAttribute="trailing" constant="5" id="6Ed-oo-Ixy"/>
+                <constraint firstItem="kH2-3e-DuL" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" id="AFh-di-L66"/>
+                <constraint firstItem="bCq-wO-0Ku" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="17" id="EUd-th-J5m"/>
+                <constraint firstAttribute="bottom" secondItem="kH2-3e-DuL" secondAttribute="bottom" id="Ekf-3s-yCp"/>
+                <constraint firstAttribute="trailing" secondItem="bCq-wO-0Ku" secondAttribute="trailing" constant="8" id="aoG-if-HBp"/>
+                <constraint firstItem="JqN-v1-ZkH" firstAttribute="top" secondItem="bCq-wO-0Ku" secondAttribute="bottom" constant="5" id="b91-Cu-8BB"/>
+                <constraint firstItem="H9j-N4-I3I" firstAttribute="leading" secondItem="S1P-e5-yYK" secondAttribute="leading" constant="8" id="cWs-5F-htE"/>
+                <constraint firstItem="H9j-N4-I3I" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" constant="8" id="mnS-1T-KgB"/>
+                <constraint firstItem="JqN-v1-ZkH" firstAttribute="leading" secondItem="H9j-N4-I3I" secondAttribute="trailing" constant="5" id="ol9-OB-jSt"/>
+                <constraint firstItem="kH2-3e-DuL" firstAttribute="top" secondItem="S1P-e5-yYK" secondAttribute="top" id="qQY-pz-IbI"/>
+                <constraint firstAttribute="trailing" secondItem="JqN-v1-ZkH" secondAttribute="trailing" constant="8" id="wU0-Lb-de8"/>
             </constraints>
             <size key="customSize" width="307" height="90"/>
             <connections>
-                <outlet property="albumImg" destination="ReW-hm-zHb" id="J8O-bn-UWz"/>
-                <outlet property="artistName" destination="LCV-pk-XbM" id="ubN-ua-cIE"/>
-                <outlet property="songTitle" destination="8Wt-E6-eZ3" id="Zaj-Xf-qob"/>
+                <outlet property="albumImg" destination="H9j-N4-I3I" id="ODM-ug-K7T"/>
+                <outlet property="artistName" destination="JqN-v1-ZkH" id="U05-7Z-O6k"/>
+                <outlet property="songTitle" destination="bCq-wO-0Ku" id="kvR-07-Zyk"/>
             </connections>
             <point key="canvasLocation" x="181.8840579710145" y="96.428571428571431"/>
         </collectionViewCell>

@@ -67,6 +67,9 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
     private func loadTopAlbumsFromCoreData() {
         
         let request: NSFetchRequest<Album> = Album.fetchRequest()
+        let predicate = NSPredicate(format: "top50Album = %d", true)
+        
+        request.predicate = predicate
         
         do {
             albumCatalog = try context.fetch(request)
@@ -107,6 +110,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
             newAlbum.albumId = album.idAlbum
             newAlbum.artisId = album.idArtist
             newAlbum.cover = cover
+            newAlbum.top50Album = true
                 
                 
             albumCatalog.append(newAlbum)

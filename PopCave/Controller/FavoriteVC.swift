@@ -13,13 +13,21 @@ struct RecomendationStruct: Decodable {
     var Name: String?
 }
 
+struct ArtistStruct:Decodable {
+    var strArtist: String?
+    var strStyle: String?
+    var strBiographyEN: String?
+    var strCountry: String?
+    var strArtistThumb: String?
+}
+
 class FavoriteVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var trackArray = [Track]()
     private var recomendationArray = [String]() {
-        didSet {
+        didSet {            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -30,7 +38,7 @@ class FavoriteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "FavoriteCell", bundle: nil), forCellReuseIdentifier: "customFavoriteCell")
-        
+        collectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "customArtisCell")
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -62,9 +70,9 @@ class FavoriteVC: UIViewController {
     
     private func updateItem(at index: Int) {
         trackArray[index].isFavorite = false
-        //context.delete(trackArray[index])
         saveToFile(reload: false)
         trackArray.remove(at: index)
+        getRecomendations()
     }
     
     
@@ -97,6 +105,10 @@ class FavoriteVC: UIViewController {
         var baseUrl = "https://tastedive.com/api/similar?q="
         var artistArray = [String]()
         
+        if trackArray.count <= 0 {
+            return
+        }
+        
         for track in trackArray {
             var trackString = track.parentAlbum!.artist!
             trackString = trackString.replacingOccurrences(of: " ", with: "+")
@@ -125,17 +137,49 @@ class FavoriteVC: UIViewController {
                     if let artistCollection =  artists["Similar"]?["Results"]{
                         for artist in artistCollection {
                               if let name = artist.Name {
-                                  artistArray.append(name)
+                                artistArray.append(name)
                               }
                           }
                         self.recomendationArray = artistArray
                     }
   
+                } catch let error {
+                    print("Error accured: \(error)")
+                }
+            }.resume()
+        }
+    }
+    
+    private func getArtistData(_ name: String){
+        var urlString = name.lowercased()
+        urlString = urlString.replacingOccurrences(of: " ", with: "%20")
+        urlString = "​https://www.theaudiodb.com/api/v1/json/1/search.php?s=\(urlString)"
+        
+        if let url = URL(string: urlString) {
+            
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                
+                guard let data = data else { return }
+                
+                print("SESION STARTS")
+                
+                do {
+                    let artist = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
+                    
+                    print("------------------------------------------------------------------------")
+                    print(artist)
+                    print("------------------------------------------------------------------------")
+                    
+
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
                 }
                 
             }.resume()
+        } else {
+            print("------------------------------------------------------------------------")
+            print(urlString)
+            print("------------------------------------------------------------------------")
         }
     }
 }
@@ -184,8 +228,9 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recomendationCell", for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artistCell", for: indexPath) as! ArtistCell
+        cell.configure(with: recomendationArray[indexPath.row])
+        
         return cell
     }
 }
