@@ -1,7 +1,7 @@
 import Foundation
 
 extension TimeInterval {
-    var minuteSecondMS: String {
+    var minutesAndSecoundsString: String {
         return String(format:"%d:%02d", minute, second)
     }
     var minute: Int {

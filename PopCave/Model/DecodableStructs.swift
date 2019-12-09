@@ -16,12 +16,14 @@ struct TrackStruct: Decodable {
 }
 
 struct AlbumStruct: Decodable {
-    var strArtist:String?
-    var strAlbum:String?
-    var strAlbumThumb:String?
-    var idAlbum:String?
-    var idArtist:String?
+    var strArtist: String?
+    var strAlbum: String?
+    var strAlbumThumb: String?
+    var idAlbum: String?
+    var idArtist: String?
     var strDescription: String?
+    var intYearReleased: String?
+    
 }
 
 struct RecomendationStruct: Decodable {

@@ -101,6 +101,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
             newAlbum.albumId = album.idAlbum
             newAlbum.artisId = album.idArtist
             newAlbum.cover = cover
+            newAlbum.year = album.intYearReleased
             newAlbum.top50Album = true
                 
                 
@@ -201,11 +202,11 @@ extension TopListVC: UICollectionViewDataSource {
             let itemHeight: CGFloat
             
             if !showInList {
-                itemWidth = CGFloat(149)
+                itemWidth = view.bounds.width / 2.5
                 itemHeight = CGFloat(200)
             } else {
                 itemWidth = view.bounds.width - CGFloat(16)
-                itemHeight = CGFloat(95)
+                itemHeight = CGFloat(90)
             }
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)

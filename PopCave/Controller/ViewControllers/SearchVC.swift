@@ -63,6 +63,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate {
             newAlbum.albumTitle = album.strAlbum
             newAlbum.albumId = album.idAlbum
             newAlbum.artisId = album.idArtist
+            newAlbum.year = album.intYearReleased
             newAlbum.cover = cover
             newAlbum.top50Album = false
                 
@@ -113,9 +114,12 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     private func search(for text: String) {
+        var nameStr = text.lowercased()
+        nameStr = nameStr.replacingOccurrences(of: " ", with: "%20")
         
-        let strUrl = "https://www.theaudiodb.com/api/v1/json/"
-        if let url = URL(string: "\(strUrl)\(THEAUDIODB_KEY)/searchalbum.php?s=\(text)") {
+        let strUrl = "https://www.theaudiodb.com/api/v1/json/\(THEAUDIODB_KEY)/searchalbum.php?s=\(nameStr)"
+        print(strUrl)
+        if let url = URL(string: strUrl) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
                 guard let data = data else { return }
@@ -142,6 +146,7 @@ extension SearchVC: UISearchBarDelegate {
                     }
                     
                     DispatchQueue.main.async {
+                        self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
                         self.dismiss(animated: true, completion: nil)
                         self.updateLayout()
                         self.collectionView.reloadData()
@@ -193,7 +198,7 @@ extension SearchVC: UICollectionViewDataSource {
     private func updateLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let itemWidth = view.bounds.width - CGFloat(16)
-            let itemHeight = CGFloat(95)
+            let itemHeight = CGFloat(90)
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
             layout.invalidateLayout()

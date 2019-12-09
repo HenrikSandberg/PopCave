@@ -13,12 +13,12 @@
 		AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */; };
 		AF35A310237C1FAD00A929F7 /* TopListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A30F237C1FAD00A929F7 /* TopListVC.swift */; };
 		AF35A313237C1FAD00A929F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF35A311237C1FAD00A929F7 /* Main.storyboard */; };
-		AF35A316237C1FAD00A929F7 /* PopCave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */; };
 		AF35A318237C1FAD00A929F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF35A317237C1FAD00A929F7 /* Assets.xcassets */; };
 		AF35A31B237C1FAD00A929F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF35A319237C1FAD00A929F7 /* LaunchScreen.storyboard */; };
 		AF35A326237C1FAD00A929F7 /* PopCaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A325237C1FAD00A929F7 /* PopCaveTests.swift */; };
 		AF35A331237C1FAD00A929F7 /* PopCaveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */; };
 		AF35A342237C283D00A929F7 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A341237C283D00A929F7 /* AlbumCell.swift */; };
+		AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */; };
 		AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDB239D601200453C61 /* DecodableStructs.swift */; };
 		AF4A6FDE239D651B00453C61 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDD239D651B00453C61 /* APIKeys.swift */; };
 		AF4A6FE0239D74DD00453C61 /* ArtisWithAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDF239D74DD00453C61 /* ArtisWithAlbums.swift */; };
@@ -58,7 +58,6 @@
 		AF35A30D237C1FAD00A929F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AF35A30F237C1FAD00A929F7 /* TopListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListVC.swift; sourceTree = "<group>"; };
 		AF35A312237C1FAD00A929F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopCave.xcdatamodel; sourceTree = "<group>"; };
 		AF35A317237C1FAD00A929F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF35A31A237C1FAD00A929F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF35A31C237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCaveUITests.swift; sourceTree = "<group>"; };
 		AF35A332237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF35A341237C283D00A929F7 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = PopCave/Controller/CellControllers/AlbumCell.swift; sourceTree = SOURCE_ROOT; };
+		AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopCave.xcdatamodel; sourceTree = "<group>"; };
 		AF4A6FDB239D601200453C61 /* DecodableStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableStructs.swift; sourceTree = "<group>"; };
 		AF4A6FDD239D651B00453C61 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		AF4A6FDF239D74DD00453C61 /* ArtisWithAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtisWithAlbums.swift; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 				AF35A33F237C266D00A929F7 /* View */,
 				AF35A33E237C265C00A929F7 /* Controller */,
 				AF35A340237C267300A929F7 /* Model */,
-				AF35A317237C1FAD00A929F7 /* Assets.xcassets */,
 				AF35A31C237C1FAD00A929F7 /* Info.plist */,
 			);
 			path = PopCave;
@@ -171,6 +170,7 @@
 		AF35A33F237C266D00A929F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF35A317237C1FAD00A929F7 /* Assets.xcassets */,
 				AFE8711D239D54870012411A /* CustomCells */,
 				AF35A319237C1FAD00A929F7 /* LaunchScreen.storyboard */,
 				AF35A311237C1FAD00A929F7 /* Main.storyboard */,
@@ -181,7 +181,7 @@
 		AF35A340237C267300A929F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */,
+				AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */,
 				AF5EE1E8239BD7F400AA5863 /* extensions.swift */,
 				AF4A6FDB239D601200453C61 /* DecodableStructs.swift */,
 				AF4A6FDD239D651B00453C61 /* APIKeys.swift */,
@@ -374,8 +374,8 @@
 				AF35A342237C283D00A929F7 /* AlbumCell.swift in Sources */,
 				AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */,
 				AF4A6FE0239D74DD00453C61 /* ArtisWithAlbums.swift in Sources */,
-				AF35A316237C1FAD00A929F7 /* PopCave.xcdatamodeld in Sources */,
 				AF4A6FE2239D7AB400453C61 /* ArtistVC.swift in Sources */,
+				AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */,
 				AF5EE1E9239BD7F400AA5863 /* extensions.swift in Sources */,
 				AF0173DA2396C391003ECD4C /* AlbumVC.swift in Sources */,
 				AF5EE1E6239BCC0100AA5863 /* FavoriteCell.swift in Sources */,
@@ -712,13 +712,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		AF35A314237C1FAD00A929F7 /* PopCave.xcdatamodeld */ = {
+		AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */,
+				AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */,
 			);
-			currentVersion = AF35A315237C1FAD00A929F7 /* PopCave.xcdatamodel */;
-			path = PopCave.xcdatamodeld;
+			currentVersion = AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */;
+			name = PopCave.xcdatamodeld;
+			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/PopCave/PopCave/Model/PopCave.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +23,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" name="brandColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.38823529411764707" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VPz-fz-e4A" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="W6c-5R-emi"/>
                             <constraint firstItem="VPz-fz-e4A" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="spB-x1-kAh"/>
@@ -39,8 +38,5 @@
     </scenes>
     <resources>
         <image name="big_logo" width="820" height="820"/>
-        <namedColor name="brandColor">
-            <color red="0.94117647058823528" green="0.38431372549019605" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

@@ -14,6 +14,7 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var segemntController: UISegmentedControl!
     @IBOutlet weak var artistImage: UIImageView!
     @IBOutlet weak var artistName: UILabel!
+    @IBOutlet weak var styleLable: UILabel!
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var albums = [(album: AlbumStruct, cover: Data)]()
@@ -44,6 +45,8 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
     private func setUpContent(with data: Data, artist: ArtistStruct) {
         DispatchQueue.main.async {
             self.artistName.text = artist.strArtist!
+            self.styleLable.text = artist.strStyle!
+                
             self.artistImage.image = UIImage(data: data)
             self.artistImage.layer.borderWidth = 4
             self.artistImage.layer.masksToBounds = false
@@ -91,8 +94,11 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
     }
     
     private func getAlbums(for artist: String){
-        let strUrl = "https://www.theaudiodb.com/api/v1/json/"
-        if let url = URL(string: "\(strUrl)\(THEAUDIODB_KEY)/searchalbum.php?s=\(artist)") {
+        var nameStr = artist.lowercased()
+        nameStr = nameStr.replacingOccurrences(of: " ", with: "%20")
+        
+        let strUrl = "https://www.theaudiodb.com/api/v1/json/\(THEAUDIODB_KEY)/searchalbum.php?s=\(nameStr)"
+        if let url = URL(string: "\(strUrl)") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
                 guard let data = data else { return }
@@ -100,20 +106,13 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
                 do {
                     let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
                     
-                    DispatchQueue.main.async {
-                        let alert = self.createLoader()
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                    
                     for album in albums["album"]! {
                         if let strUrl = album.strAlbumThumb {
                             if let url = URL(string: strUrl) {
                                 do {
                                     let image = try Data(contentsOf : url)
                                     self.albums.append((album: album, cover: image))
-                                    DispatchQueue.main.async {
-                                        self.collectionView.reloadData()
-                                    }
+                                    
                                 } catch let err {
                                     print(err)
                                 }
@@ -122,11 +121,9 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
                     }
                     
                     DispatchQueue.main.async {
-                        self.dismiss(animated: true, completion: nil)
-//                        self.updateLayout()
-//                        self.collectionView.reloadData()
+                        self.albums.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
+                        self.updateLayout()
                     }
-                    
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
                 }
@@ -167,6 +164,7 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
             newAlbum.albumTitle = album.strAlbum
             newAlbum.albumId = album.idAlbum
             newAlbum.artisId = album.idArtist
+            newAlbum.year = album.intYearReleased!
             newAlbum.cover = cover
             newAlbum.top50Album = false
                 
@@ -197,7 +195,6 @@ extension ArtistVC: UICollectionViewDataSource {
                 assertionFailure("Should have dequeued AlbumCell here")
                 return UICollectionViewCell()
             }
-        
         return configured(cell, at: indexPath, with: (albums[indexPath.row]))
     }
     
@@ -207,20 +204,13 @@ extension ArtistVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToAlbum", sender: self)
+        performSegue(withIdentifier: "goToAlbumContent", sender: self)
     }
     
     private func updateLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth: CGFloat
-            let itemHeight: CGFloat
-            
-//            if !showInList {
-//                itemWidth = CGFloat(149)
-//                itemHeight = CGFloat(200)
-//            } else {
-            itemWidth = view.bounds.width - CGFloat(16)
-            itemHeight = CGFloat(95)
+            let itemWidth = view.bounds.width - CGFloat(16)
+            let itemHeight = CGFloat(90)
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
             layout.invalidateLayout()

@@ -28,7 +28,7 @@ class FavoriteCell: UITableViewCell {
         artistLbl.text = album.artist!
         songlbl.text = track.title!
         
-        let time = Int(track.length!)!.msToSeconds.minuteSecondMS
+        let time = Int(track.length!)!.msToSeconds.minutesAndSecoundsString
         playTimelbl.text = time
     }
     

@@ -10,11 +10,11 @@ import UIKit
 import CoreData
 
 
-class AlbumVC: UIViewController {
+class AlbumVC: UITableViewController {
     @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var albumLbl: UILabel!
     @IBOutlet weak var artistLbl: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var yearLbl: UILabel!
     
     private var selectedAlbum: Album? {
         didSet {
@@ -27,8 +27,6 @@ class AlbumVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     
@@ -46,6 +44,7 @@ class AlbumVC: UIViewController {
             coverImg.image = UIImage(data: album.cover!)!
             albumLbl.text = album.albumTitle!
             artistLbl.text = album.artist!
+            yearLbl.text = album.year!
         }
     }
     
@@ -134,20 +133,17 @@ class AlbumVC: UIViewController {
             saveToFile()
         }
     }
-}
     
-// MARK: - Table view
-extension AlbumVC: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    //MARK:- Table view methods
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as? TrackCell{
             let track = trackList[indexPath.row]
@@ -158,10 +154,12 @@ extension AlbumVC: UITableViewDelegate, UITableViewDataSource {
         return TrackCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         trackList[indexPath.row].isFavorite = !trackList[indexPath.row].isFavorite
         saveToFile()
+        UserDefaults.standard.set(true, forKey: "updateFavorite")
         
+        trackList.sort(by: {$0.number < $1.number})
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -7,6 +7,7 @@
         <attribute name="artist" optional="YES" attributeType="String"/>
         <attribute name="cover" optional="YES" attributeType="Binary"/>
         <attribute name="top50Album" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="String"/>
         <relationship name="track" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="parentAlbum" inverseEntity="Track"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
@@ -15,10 +16,11 @@
         <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="trackId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="isFave" optional="YES" maxCount="1" deletionRule="Nullify"/>
         <relationship name="parentAlbum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="track" inverseEntity="Album"/>
     </entity>
     <elements>
-        <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="148"/>
-        <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="133"/>
+        <element name="Album" positionX="-527.76953125" positionY="-199.73046875" width="112.8046875" height="163"/>
+        <element name="Track" positionX="-168.69921875" positionY="-48.359375" width="128" height="148"/>
     </elements>
 </model>
