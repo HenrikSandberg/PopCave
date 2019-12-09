@@ -195,10 +195,8 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? AlbumVC,
-            let index = collectionView.indexPathsForSelectedItems?.first {
-            
-            //destination.getData(from: albumCatalog[index.row])
+        if let destination = segue.destination as? ArtistVC, let index = collectionView.indexPathsForSelectedItems?.first {
+            destination.configure(from: recomendationArray[index.row])
         }
     }
     

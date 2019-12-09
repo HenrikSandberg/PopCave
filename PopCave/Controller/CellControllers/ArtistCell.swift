@@ -12,16 +12,10 @@ class ArtistCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var text: UILabel!
     
-    private var artist: Artist?
-    
     //MARK:- Public Functions
     func configure(with artist: String) {
         text.text = artist
         getArtistData(artist)
-    }
-    
-    func getAtrist() -> Artist? {
-        return artist
     }
     
     //MARK:- Private Functions
@@ -34,15 +28,6 @@ class ArtistCell: UICollectionViewCell {
             self.image.layer.cornerRadius = self.image.frame.height/2
             self.image.clipsToBounds = true
         }
-    }
-    
-    private func generateArtis(with artistStruct: ArtistStruct, image: Data) {
-        artist = Artist(
-            name: artistStruct.strArtist!,
-            style: artistStruct.strStyle!,
-            biography: artistStruct.strBiographyEN!,
-            country: artistStruct.strCountry!,
-            image: image)
     }
     
     private func getArtistData(_ name: String) {
@@ -65,7 +50,6 @@ class ArtistCell: UICollectionViewCell {
                                     do {
                                         let image = try Data(contentsOf : url)
                                         self.setImage(with: image)
-                                        self.generateArtis(with: artist, image: image)
                                     } catch let err {
                                         print(err)
                                     }

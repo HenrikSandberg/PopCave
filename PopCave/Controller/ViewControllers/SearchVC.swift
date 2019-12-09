@@ -22,6 +22,18 @@ class SearchVC: UIViewController, UICollectionViewDelegate {
         self.collectionView.register(UINib(nibName: "AlbumLineCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumLineCell")
     }
     
+    private func createLoader() -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating()
+        
+        alert.view.addSubview(loadingIndicator)
+        return alert
+    }
+    
     //MARK:- Context Handling
     private func saveToFile() {
         do {
@@ -35,7 +47,7 @@ class SearchVC: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    private func addAlbum(for album: AlbumStruct, with cover: Data?) -> Album?{
+    private func addAlbum(for album: AlbumStruct, with cover: Data?) -> Album? {
         var shouldAdd = true
         var albumCatalog = [Album]()
         
@@ -70,14 +82,13 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
             albumStructCatalog.removeAll()
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-            search(for: text)
             
             DispatchQueue.main.async {
+                self.collectionView.reloadData()
                 searchBar.resignFirstResponder()
             }
+            
+            search(for: text)
         }
     }
     
@@ -85,7 +96,9 @@ extension SearchVC: UISearchBarDelegate {
         if let text = searchBar.text {
             if text.count == 0 {
                  DispatchQueue.main.async {
-                     searchBar.resignFirstResponder()
+                    self.albumStructCatalog.removeAll()
+                    self.collectionView.reloadData()
+                    searchBar.resignFirstResponder()
                  }
             }
         }
@@ -110,6 +123,11 @@ extension SearchVC: UISearchBarDelegate {
                 do {
                     let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
                     
+                    DispatchQueue.main.async {
+                        let alert = self.createLoader()
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    
                     for album in albums["album"]! {
                         if let strUrl = album.strAlbumThumb {
                             if let url = URL(string: strUrl) {
@@ -124,6 +142,7 @@ extension SearchVC: UISearchBarDelegate {
                     }
                     
                     DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
                         self.updateLayout()
                         self.collectionView.reloadData()
                     }
