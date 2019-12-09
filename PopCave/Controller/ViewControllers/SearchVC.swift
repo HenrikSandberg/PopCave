@@ -1,11 +1,3 @@
-//
-//  SearchVC.swift
-//  PopCave
-//
-//  Created by Henrik Anthony Odden Sandberg on 08/12/2019.
-//  Copyright © 2019 Henrik Anthony Odden Sandberg. All rights reserved.
-//
-
 import UIKit
 import CoreData
 

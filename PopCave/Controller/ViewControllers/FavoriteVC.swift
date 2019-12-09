@@ -1,11 +1,3 @@
-//
-//  FavoriteVC.swift
-//  PopCave
-//
-//  Created by Henrik Anthony Odden Sandberg on 06/12/2019.
-//  Copyright © 2019 Henrik Anthony Odden Sandberg. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -15,27 +7,28 @@ class FavoriteVC: UITableViewController {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var trackArray = [Track]()
-    private var updateFavorite = false
+    private var updateFavorite: Bool?
     
     private var recomendationArray = [Recommendation]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "FavoriteCell", bundle: nil), forCellReuseIdentifier: "customFavoriteCell")
-        collectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "customArtisCell")
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem        
-        updateFavorite = UserDefaults.standard.bool(forKey: "updateFavorite")
-    
+        tableView.register(UINib(nibName: "FavoriteCell", bundle: nil), forCellReuseIdentifier: "customFavoriteCell")
+        tableView.tableHeaderView = header
+        
+        collectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "customArtisCell")
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        tableView.tableHeaderView = header
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateFavorite = UserDefaults.standard.bool(forKey: "updateFavorite")
         loadItems()
+        loadRecommendations()
         getRecommendations()
     }
     
@@ -52,7 +45,10 @@ class FavoriteVC: UITableViewController {
         trackArray[index].isFavorite = false
         saveToFile()
         trackArray.remove(at: index)
+        tableView.tableHeaderView = header
+        
         UserDefaults.standard.set(true, forKey: "updateFavorite")
+        updateFavorite = true
         getRecommendations()
     }
     
@@ -72,8 +68,8 @@ class FavoriteVC: UITableViewController {
             }
             
             //trackArray.sort(by: {$0.trackId < $1.trackId})
-            
             tableView.reloadData()
+            tableView.tableHeaderView = header
         } catch {
             print("Error with load: \(error)")
         }
@@ -86,11 +82,6 @@ class FavoriteVC: UITableViewController {
         fetchRequest.includesPropertyValues = false
         
         do {
-            let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
-            recomendationArray = try context.fetch(request)
-            recomendationArray.removeAll()
-            saveToFile()
-            
             let items = try context.fetch(fetchRequest) as! [NSManagedObject]
 
             for item in items {
@@ -98,6 +89,10 @@ class FavoriteVC: UITableViewController {
             }
             
             try context.save()
+            
+            let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
+            recomendationArray = try context.fetch(request)
+            
         } catch {
             print("Error with load: \(error)")
         }
@@ -112,6 +107,7 @@ class FavoriteVC: UITableViewController {
             
             if recomendationArray.count < 0 {
                 UserDefaults.standard.set(true, forKey: "updateFavorite")
+                updateFavorite = true
                 getRecommendations()
             } else {
                 DispatchQueue.main.async {
@@ -128,8 +124,10 @@ class FavoriteVC: UITableViewController {
         var shouldAdd = true
         
         for content in recomendationArray {
-            if content.artistName! == name {
-                shouldAdd = false
+            if let artistName = content.artistName {
+                if artistName == name {
+                    shouldAdd = false
+                }
             }
         }
         
@@ -152,12 +150,14 @@ class FavoriteVC: UITableViewController {
             return
         }
         
-        if !updateFavorite {
+        if !updateFavorite! {
             loadRecommendations()
             return
         }
         
-        resetRecommendations()
+        if recomendationArray.count > 0 {
+            resetRecommendations()
+        }
         
         for track in trackArray {
             var trackString = track.parentAlbum!.artist!
@@ -191,8 +191,14 @@ class FavoriteVC: UITableViewController {
                                 self.addRecommendation(with: name)
                               }
                           }
-                        //self.recomendationArray = artistArray
                         UserDefaults.standard.set(false, forKey: "updateFavorite")
+                        self.updateFavorite = false
+                        
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            self.tableView.tableHeaderView = self.header
+                            self.tableView.reloadData()
+                        }
                     }
   
                 } catch let error {
@@ -200,7 +206,6 @@ class FavoriteVC: UITableViewController {
                 }
             }.resume()
         }
-        
     }
 
     // MARK: - Table view data source
@@ -243,8 +248,6 @@ class FavoriteVC: UITableViewController {
         trackArray.insert(movedObject, at: destinationIndexPath.row)
         saveToFile()
     }
-    
-    
 
     // MARK: - Navigation
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

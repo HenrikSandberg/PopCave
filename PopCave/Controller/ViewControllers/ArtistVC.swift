@@ -1,17 +1,8 @@
-//
-//  ArtistVC.swift
-//  PopCave
-//
-//  Created by Henrik Anthony Odden Sandberg on 08/12/2019.
-//  Copyright © 2019 Henrik Anthony Odden Sandberg. All rights reserved.
-//
-
 import UIKit
 
 class ArtistVC: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var segemntController: UISegmentedControl!
     @IBOutlet weak var artistImage: UIImageView!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var styleLable: UILabel!

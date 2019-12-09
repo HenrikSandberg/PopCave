@@ -199,7 +199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQi-Tm-fxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3496.8000000000002" y="687.192118226601"/>
+            <point key="canvasLocation" x="4726" y="723"/>
         </scene>
         <!--Top List-->
         <scene sceneID="FlO-pD-hZO">
@@ -220,7 +220,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDF-Ku-jIT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1154" y="688"/>
+            <point key="canvasLocation" x="-2015" y="1434"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N6f-4p-WbU">
@@ -263,15 +263,8 @@
                                     <constraint firstAttribute="height" constant="150" id="nV4-CQ-EJg"/>
                                 </constraints>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zTp-2o-dEw">
-                                <rect key="frame" x="8" y="254" width="359" height="32"/>
-                                <segments>
-                                    <segment title="Albums"/>
-                                    <segment title="Description"/>
-                                </segments>
-                            </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2em-6a-iu7">
-                                <rect key="frame" x="0.0" y="293" width="375" height="436"/>
+                                <rect key="frame" x="0.0" y="265" width="375" height="464"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sBL-FE-z5i">
                                     <size key="itemSize" width="300" height="90"/>
@@ -281,38 +274,43 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6Z-As-Ot7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of music" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6Z-As-Ot7">
                                 <rect key="frame" x="166" y="213.66666666666666" width="201" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMf-ux-oeH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMf-ux-oeH">
                                 <rect key="frame" x="166" y="174.33333333333334" width="201" height="31.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOH-05-lMT">
+                                <rect key="frame" x="8" y="254" width="359" height="3"/>
+                                <color key="backgroundColor" name="brandColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="5bO-u0-juv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="zTp-2o-dEw" firstAttribute="top" secondItem="AdY-b7-wUb" secondAttribute="bottom" constant="8" id="1Xv-zE-9uL"/>
-                            <constraint firstAttribute="trailing" secondItem="WMf-ux-oeH" secondAttribute="trailing" constant="8" id="9eu-y2-qNl"/>
-                            <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="zTp-2o-dEw" secondAttribute="trailing" constant="8" id="B1u-5Q-90p"/>
-                            <constraint firstItem="2em-6a-iu7" firstAttribute="bottom" secondItem="nbZ-nO-a0p" secondAttribute="bottom" id="LzD-j9-7DK"/>
-                            <constraint firstItem="R6Z-As-Ot7" firstAttribute="top" secondItem="WMf-ux-oeH" secondAttribute="bottom" constant="8" id="P7n-Ii-0oy"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" id="2on-O2-1CL"/>
+                            <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="WMf-ux-oeH" secondAttribute="trailing" constant="8" id="76n-Fb-qv3"/>
+                            <constraint firstItem="WMf-ux-oeH" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="CHd-Rb-PZp"/>
+                            <constraint firstItem="R6Z-As-Ot7" firstAttribute="top" secondItem="WMf-ux-oeH" secondAttribute="bottom" constant="8" id="Ebg-1X-hMz"/>
+                            <constraint firstItem="YOH-05-lMT" firstAttribute="top" secondItem="R6Z-As-Ot7" secondAttribute="bottom" constant="20" id="Ep8-ch-Fht"/>
+                            <constraint firstItem="YOH-05-lMT" firstAttribute="top" secondItem="AdY-b7-wUb" secondAttribute="bottom" constant="8" id="I1q-i0-Hqh"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="bottom" secondItem="nbZ-nO-a0p" secondAttribute="bottom" id="OvK-cp-eh7"/>
+                            <constraint firstItem="YOH-05-lMT" firstAttribute="leading" secondItem="b8i-Mc-P9G" secondAttribute="leading" constant="8" id="P1u-ml-VoO"/>
                             <constraint firstItem="AdY-b7-wUb" firstAttribute="top" secondItem="nbZ-nO-a0p" secondAttribute="top" constant="8" id="SHs-fz-VHF"/>
-                            <constraint firstItem="zTp-2o-dEw" firstAttribute="top" secondItem="AdY-b7-wUb" secondAttribute="bottom" constant="8" id="Vxa-al-IQo"/>
-                            <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="R6Z-As-Ot7" secondAttribute="trailing" constant="8" id="YAO-Ps-jqU"/>
-                            <constraint firstItem="zTp-2o-dEw" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" constant="8" id="YeW-C0-wdC"/>
-                            <constraint firstItem="R6Z-As-Ot7" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="eZf-AQ-SB2"/>
-                            <constraint firstItem="2em-6a-iu7" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" id="ewy-yx-Wxc"/>
-                            <constraint firstItem="zTp-2o-dEw" firstAttribute="top" secondItem="R6Z-As-Ot7" secondAttribute="bottom" constant="20" id="f8J-XB-lp9"/>
+                            <constraint firstItem="R6Z-As-Ot7" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="Zk9-Sc-5Uw"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="trailing" secondItem="nbZ-nO-a0p" secondAttribute="trailing" id="fe4-Si-rkP"/>
                             <constraint firstItem="AdY-b7-wUb" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" constant="8" id="hSv-4r-qpH"/>
-                            <constraint firstItem="2em-6a-iu7" firstAttribute="trailing" secondItem="nbZ-nO-a0p" secondAttribute="trailing" id="hxK-28-MJq"/>
-                            <constraint firstAttribute="trailing" secondItem="WMf-ux-oeH" secondAttribute="trailing" constant="8" id="jgU-Hf-cmW"/>
-                            <constraint firstItem="WMf-ux-oeH" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="oee-a8-3KR"/>
-                            <constraint firstItem="2em-6a-iu7" firstAttribute="top" secondItem="zTp-2o-dEw" secondAttribute="bottom" constant="8" symbolic="YES" id="yAw-2l-fiD"/>
+                            <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="R6Z-As-Ot7" secondAttribute="trailing" constant="8" id="jTZ-Vt-tWU"/>
+                            <constraint firstAttribute="trailing" secondItem="YOH-05-lMT" secondAttribute="trailing" constant="8" id="nwQ-gz-Q4F"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="top" secondItem="YOH-05-lMT" secondAttribute="bottom" constant="8" id="yJx-Ya-XOG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nbZ-nO-a0p"/>
                     </view>
@@ -321,14 +319,13 @@
                         <outlet property="artistImage" destination="AdY-b7-wUb" id="JbB-Xf-2IY"/>
                         <outlet property="artistName" destination="WMf-ux-oeH" id="Tqo-aw-C5r"/>
                         <outlet property="collectionView" destination="2em-6a-iu7" id="6oz-dV-I5d"/>
-                        <outlet property="segemntController" destination="zTp-2o-dEw" id="VqZ-5h-4bL"/>
                         <outlet property="styleLable" destination="R6Z-As-Ot7" id="zan-Tf-y1m"/>
                         <segue destination="wGb-a0-M8a" kind="show" identifier="goToAlbumContent" id="9JM-cC-kyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekl-Pe-YdG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2782.608695652174" y="1826.7857142857142"/>
+            <point key="canvasLocation" x="3906" y="1813"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WV5-RP-efq">
@@ -442,7 +439,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommendations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-ep-qbJ">
-                                    <rect key="frame" x="8" y="8" width="229" height="30"/>
+                                    <rect key="frame" x="8" y="8" width="359" height="30"/>
                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -500,6 +497,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="dlr-HD-gQz" secondAttribute="trailing" id="5ls-RY-Z4m"/>
+                                <constraint firstAttribute="trailing" secondItem="eEb-ep-qbJ" secondAttribute="trailing" constant="8" id="7d9-e8-lvJ"/>
                                 <constraint firstItem="eEb-ep-qbJ" firstAttribute="leading" secondItem="Ber-AE-wn2" secondAttribute="leading" constant="8" id="AEZ-Gw-Dpx"/>
                                 <constraint firstAttribute="bottom" secondItem="dlr-HD-gQz" secondAttribute="bottom" constant="22" id="O1p-Vr-r4d"/>
                                 <constraint firstItem="dlr-HD-gQz" firstAttribute="top" secondItem="eEb-ep-qbJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WSI-Hi-xSH"/>
@@ -536,6 +534,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9JM-cC-kyg"/>
+        <segue reference="JkP-Ax-lfb"/>
     </inferredMetricsTieBreakers>
 </document>

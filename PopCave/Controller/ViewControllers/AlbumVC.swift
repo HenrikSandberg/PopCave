@@ -1,11 +1,3 @@
-//
-//  AlbumDetaljeView.swift
-//  PopCave
-//
-//  Created by Henrik Anthony Odden Sandberg on 03/12/2019.
-//  Copyright © 2019 Henrik Anthony Odden Sandberg. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -129,6 +121,7 @@ class AlbumVC: UITableViewController {
             newTrack.trackId = Int32(data.idTrack!)!
             newTrack.number = Int32(data.intTrackNumber!)!
             
+            UserDefaults.standard.set(true, forKey: "updateFavorite")
             trackList.append(newTrack)
             saveToFile()
         }
@@ -157,7 +150,6 @@ class AlbumVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         trackList[indexPath.row].isFavorite = !trackList[indexPath.row].isFavorite
         saveToFile()
-        UserDefaults.standard.set(true, forKey: "updateFavorite")
         
         trackList.sort(by: {$0.number < $1.number})
         tableView.reloadData()

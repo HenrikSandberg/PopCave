@@ -1,11 +1,3 @@
-//
-//  FavoriteCell.swift
-//  PopCave
-//
-//  Created by Henrik Anthony Odden Sandberg on 07/12/2019.
-//  Copyright © 2019 Henrik Anthony Odden Sandberg. All rights reserved.
-//
-
 import UIKit
 
 class FavoriteCell: UITableViewCell {
