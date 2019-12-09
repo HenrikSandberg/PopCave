@@ -231,7 +231,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hcd-S0-F4g">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="brandColor"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -336,7 +336,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rHh-me-lG0">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="brandColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -360,7 +360,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d84-aV-UGN">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="brandColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -439,13 +439,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommendations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEb-ep-qbJ">
-                                    <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                    <rect key="frame" x="8" y="8" width="359" height="23"/>
                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dlr-HD-gQz">
-                                    <rect key="frame" x="0.0" y="46" width="375" height="136"/>
+                                    <rect key="frame" x="0.0" y="39" width="375" height="126"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="D7g-Ei-qqN">
@@ -456,7 +456,7 @@
                                     </collectionViewFlowLayout>
                                     <cells>
                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="artistCell" id="8fT-xY-zGp" customClass="ArtistCell" customModule="PopCave" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="0.0" width="123" height="136"/>
+                                            <rect key="frame" x="8" y="-5" width="123" height="136"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WOx-8M-p9l">
                                                 <rect key="frame" x="0.0" y="0.0" width="123" height="136"/>
@@ -496,13 +496,14 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="dlr-HD-gQz" secondAttribute="trailing" id="5ls-RY-Z4m"/>
+                                <constraint firstItem="dlr-HD-gQz" firstAttribute="leading" secondItem="Ber-AE-wn2" secondAttribute="leading" id="6UJ-dB-2Pg"/>
                                 <constraint firstAttribute="trailing" secondItem="eEb-ep-qbJ" secondAttribute="trailing" constant="8" id="7d9-e8-lvJ"/>
                                 <constraint firstItem="eEb-ep-qbJ" firstAttribute="leading" secondItem="Ber-AE-wn2" secondAttribute="leading" constant="8" id="AEZ-Gw-Dpx"/>
-                                <constraint firstAttribute="bottom" secondItem="dlr-HD-gQz" secondAttribute="bottom" constant="22" id="O1p-Vr-r4d"/>
-                                <constraint firstItem="dlr-HD-gQz" firstAttribute="top" secondItem="eEb-ep-qbJ" secondAttribute="bottom" constant="8" symbolic="YES" id="WSI-Hi-xSH"/>
-                                <constraint firstItem="dlr-HD-gQz" firstAttribute="leading" secondItem="Ber-AE-wn2" secondAttribute="leading" id="caM-Gr-oWz"/>
+                                <constraint firstItem="dlr-HD-gQz" firstAttribute="centerY" secondItem="Ber-AE-wn2" secondAttribute="centerY" id="AcR-H8-glb"/>
+                                <constraint firstAttribute="bottom" secondItem="dlr-HD-gQz" secondAttribute="bottom" constant="39" id="YQ4-zr-epB"/>
                                 <constraint firstItem="eEb-ep-qbJ" firstAttribute="top" secondItem="Ber-AE-wn2" secondAttribute="top" constant="8" id="gY0-hD-S4N"/>
+                                <constraint firstItem="dlr-HD-gQz" firstAttribute="top" secondItem="eEb-ep-qbJ" secondAttribute="bottom" constant="8" symbolic="YES" id="lpM-h2-2eM"/>
+                                <constraint firstItem="dlr-HD-gQz" firstAttribute="centerX" secondItem="eEb-ep-qbJ" secondAttribute="centerX" id="zhv-yj-tgw"/>
                             </constraints>
                         </view>
                         <connections>
@@ -520,7 +521,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Buh-Ld-ip3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511.25" y="1812.6760563380283"/>
+            <point key="canvasLocation" x="1511.2" y="1812.5615763546798"/>
         </scene>
     </scenes>
     <resources>
