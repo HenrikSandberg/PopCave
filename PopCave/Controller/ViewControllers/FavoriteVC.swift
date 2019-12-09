@@ -47,8 +47,8 @@ class FavoriteVC: UITableViewController {
         trackArray.remove(at: index)
         tableView.tableHeaderView = header
         
-        UserDefaults.standard.set(true, forKey: "updateFavorite")
         updateFavorite = true
+        UserDefaults.standard.set(updateFavorite, forKey: "updateFavorite")
         getRecommendations()
     }
     
@@ -106,8 +106,8 @@ class FavoriteVC: UITableViewController {
             recomendationArray = try context.fetch(request)
             
             if recomendationArray.count < 0 {
-                UserDefaults.standard.set(true, forKey: "updateFavorite")
                 updateFavorite = true
+                UserDefaults.standard.set(updateFavorite, forKey: "updateFavorite")
                 getRecommendations()
             } else {
                 DispatchQueue.main.async {
@@ -187,12 +187,14 @@ class FavoriteVC: UITableViewController {
                     
                     if let artistCollection =  artists["Similar"]?["Results"]{
                         for artist in artistCollection {
-                              if let name = artist.Name {
+                            if let name = artist.Name {
                                 self.addRecommendation(with: name)
-                              }
-                          }
-                        UserDefaults.standard.set(false, forKey: "updateFavorite")
+                            }
+                        }
+                        
                         self.updateFavorite = false
+                        UserDefaults.standard.set(self.updateFavorite, forKey: "updateFavorite")
+                        
                         
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
