@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NLm-f6-lnh">
-                                <rect key="frame" x="8" y="135" width="359" height="602"/>
+                                <rect key="frame" x="8" y="96" width="359" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H63-cX-mnL">
                                     <size key="itemSize" width="150" height="192"/>
@@ -28,8 +28,21 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gpu-z5-885">
-                                <rect key="frame" x="8" y="96" width="359" height="32"/>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NLm-f6-lnh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="104-tv-twD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NLm-f6-lnh" secondAttribute="bottom" constant="8" id="B5E-bP-DuT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NLm-f6-lnh" secondAttribute="trailing" constant="8" id="Vat-Ww-Iig"/>
+                            <constraint firstItem="NLm-f6-lnh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="sMe-kr-Sad"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Top 50 Albums" id="2ty-Pt-M13">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2hv-bE-v4k">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="gpu-z5-885">
+                                <rect key="frame" x="266.66666666666669" y="6" width="92.333333333333314" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <segments>
                                     <segment title="" image="square.grid.3x2" catalog="system"/>
@@ -41,23 +54,11 @@
                                     <action selector="clickOnSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="efe-qy-5Dm"/>
                                 </connections>
                             </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="gpu-z5-885" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="7Td-fX-k7i"/>
-                            <constraint firstItem="NLm-f6-lnh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="TG6-8r-6aO"/>
-                            <constraint firstItem="gpu-z5-885" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="URE-9H-RBM"/>
-                            <constraint firstItem="NLm-f6-lnh" firstAttribute="top" secondItem="gpu-z5-885" secondAttribute="bottom" constant="8" id="X5H-gT-AhM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gpu-z5-885" secondAttribute="trailing" constant="8" id="bV3-BN-vzV"/>
-                            <constraint firstAttribute="bottom" secondItem="NLm-f6-lnh" secondAttribute="bottom" constant="75" id="qdR-I4-oEr"/>
-                            <constraint firstAttribute="trailing" secondItem="NLm-f6-lnh" secondAttribute="trailing" constant="8" id="swh-wb-BrM"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Top Albums" id="2ty-Pt-M13"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="NLm-f6-lnh" id="mae-td-8Uc"/>
-                        <outlet property="segemntController" destination="gpu-z5-885" id="nLj-ez-jRa"/>
+                        <outlet property="segemntController" destination="gpu-z5-885" id="JRa-Fa-6Gh"/>
                         <segue destination="wGb-a0-M8a" kind="show" identifier="goToAlbum" id="Izn-fH-rgL"/>
                     </connections>
                 </viewController>

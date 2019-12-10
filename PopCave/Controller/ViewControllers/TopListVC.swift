@@ -9,9 +9,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
     
     private var albumCatalog = [Album]()
     private var showInList = false
-    private var layoutType: String {
-        showInList ? "customAlbumLineCell" : "customAlbumCell"
-    }
+    private var layoutType: String { showInList ? "customAlbumLineCell" : "customAlbumCell" }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +29,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
         showInList = UserDefaults.standard.bool(forKey: "displayMode")
         segemntController.selectedSegmentIndex = showInList ? 1 : 0
         updateLayout(to: view.bounds.size)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView:segemntController)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
