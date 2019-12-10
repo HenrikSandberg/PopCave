@@ -86,7 +86,7 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
                     DispatchQueue.main.async {
                         self.loader.stopAnimating()
                         self.albums.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
-                        self.updateLayout()
+                        self.updateLayout(to: self.view.bounds.size)
                     }
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
@@ -171,9 +171,9 @@ extension ArtistVC: UICollectionViewDataSource {
         performSegue(withIdentifier: "goToAlbumContent", sender: self)
     }
     
-    private func updateLayout() {
+    private func updateLayout(to size: CGSize) {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth = view.bounds.width - CGFloat(16)
+            let itemWidth = size.width
             let itemHeight = CGFloat(90)
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
@@ -181,6 +181,8 @@ extension ArtistVC: UICollectionViewDataSource {
         }
         collectionView.reloadData()
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? AlbumVC, let index = collectionView.indexPathsForSelectedItems?.first {

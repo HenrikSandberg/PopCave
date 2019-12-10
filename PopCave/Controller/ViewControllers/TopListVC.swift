@@ -30,7 +30,12 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
         
         showInList = UserDefaults.standard.bool(forKey: "displayMode")
         segemntController.selectedSegmentIndex = showInList ? 1 : 0
-        updateLayout()
+        updateLayout(to: view.bounds.size)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateLayout(to: size)
     }
     
     
@@ -151,7 +156,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
         showInList = !showInList
         
         UserDefaults.standard.set(showInList, forKey: "displayMode")
-        updateLayout()
+        updateLayout(to: view.bounds.size)
     }
     
 }
@@ -188,16 +193,16 @@ extension TopListVC: UICollectionViewDataSource {
         performSegue(withIdentifier: "goToAlbum", sender: self)
     }
     
-    private func updateLayout() {
+    private func updateLayout(to size: CGSize) {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let itemWidth: CGFloat
             let itemHeight: CGFloat
             
             if !showInList {
-                itemWidth = view.bounds.width / 2.5
+                itemWidth = size.width < 800.0 ? size.width / 2.5 : size.width / 5
                 itemHeight = CGFloat(200)
             } else {
-                itemWidth = view.bounds.width - CGFloat(16)
+                itemWidth = size.width
                 itemHeight = CGFloat(90)
             }
             

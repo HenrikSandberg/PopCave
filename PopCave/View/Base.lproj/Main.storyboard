@@ -131,13 +131,20 @@
                                 <constraint firstItem="4c6-pg-jKH" firstAttribute="top" secondItem="dsg-hY-OUT" secondAttribute="top" constant="8" id="9UU-we-gcZ"/>
                                 <constraint firstItem="EBr-ly-KUX" firstAttribute="leading" secondItem="dsg-hY-OUT" secondAttribute="leading" constant="8" id="EW1-6A-0Jh"/>
                                 <constraint firstItem="vpx-gE-g4t" firstAttribute="top" secondItem="4c6-pg-jKH" secondAttribute="bottom" constant="8" id="EX1-2o-B7f"/>
+                                <constraint firstItem="Klz-yg-28H" firstAttribute="top" secondItem="vpx-gE-g4t" secondAttribute="bottom" constant="8" id="Gu9-2Z-5Jc"/>
+                                <constraint firstItem="4c6-pg-jKH" firstAttribute="leading" secondItem="dsg-hY-OUT" secondAttribute="leadingMargin" id="IMs-Zo-jjG"/>
                                 <constraint firstItem="Klz-yg-28H" firstAttribute="leading" secondItem="dsg-hY-OUT" secondAttribute="leading" constant="8" id="Joo-B2-ULu"/>
+                                <constraint firstItem="vpx-gE-g4t" firstAttribute="leading" secondItem="dsg-hY-OUT" secondAttribute="leadingMargin" id="S0A-qC-oJn"/>
                                 <constraint firstAttribute="bottom" secondItem="EBr-ly-KUX" secondAttribute="bottom" constant="3" id="brN-0E-sgw"/>
                                 <constraint firstItem="Klz-yg-28H" firstAttribute="top" secondItem="vpx-gE-g4t" secondAttribute="bottom" constant="8" id="clv-xh-Qrb"/>
+                                <constraint firstItem="Klz-yg-28H" firstAttribute="leading" secondItem="dsg-hY-OUT" secondAttribute="leadingMargin" id="ejH-QY-y1l"/>
+                                <constraint firstItem="4c6-pg-jKH" firstAttribute="trailing" secondItem="dsg-hY-OUT" secondAttribute="trailingMargin" id="gcR-vI-dyi"/>
                                 <constraint firstAttribute="trailing" secondItem="4c6-pg-jKH" secondAttribute="trailing" constant="8" id="hlz-ee-csl"/>
                                 <constraint firstItem="HxF-hz-SiX" firstAttribute="top" secondItem="vpx-gE-g4t" secondAttribute="bottom" constant="8" id="jU6-3t-Jy4"/>
+                                <constraint firstItem="EBr-ly-KUX" firstAttribute="top" secondItem="Klz-yg-28H" secondAttribute="bottom" constant="8" id="jWt-lj-pR9"/>
                                 <constraint firstItem="EBr-ly-KUX" firstAttribute="top" secondItem="HxF-hz-SiX" secondAttribute="bottom" constant="8" id="tpE-GO-GEd"/>
                                 <constraint firstAttribute="trailing" secondItem="HxF-hz-SiX" secondAttribute="trailing" constant="8" id="xhc-e8-vcM"/>
+                                <constraint firstItem="HxF-hz-SiX" firstAttribute="trailing" secondItem="dsg-hY-OUT" secondAttribute="trailingMargin" id="zuY-Xg-tfC"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -311,6 +318,7 @@
                             <constraint firstItem="2em-6a-iu7" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" id="2on-O2-1CL"/>
                             <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="WMf-ux-oeH" secondAttribute="trailing" constant="8" id="76n-Fb-qv3"/>
                             <constraint firstItem="WMf-ux-oeH" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="CHd-Rb-PZp"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="top" secondItem="YOH-05-lMT" secondAttribute="bottom" constant="8" id="EFv-AV-FQK"/>
                             <constraint firstItem="R6Z-As-Ot7" firstAttribute="top" secondItem="WMf-ux-oeH" secondAttribute="bottom" constant="8" id="Ebg-1X-hMz"/>
                             <constraint firstItem="YOH-05-lMT" firstAttribute="top" secondItem="R6Z-As-Ot7" secondAttribute="bottom" constant="20" id="Ep8-ch-Fht"/>
                             <constraint firstItem="YOH-05-lMT" firstAttribute="top" secondItem="AdY-b7-wUb" secondAttribute="bottom" constant="8" id="I1q-i0-Hqh"/>
@@ -318,10 +326,13 @@
                             <constraint firstItem="YOH-05-lMT" firstAttribute="leading" secondItem="b8i-Mc-P9G" secondAttribute="leading" constant="8" id="P1u-ml-VoO"/>
                             <constraint firstItem="AdY-b7-wUb" firstAttribute="top" secondItem="nbZ-nO-a0p" secondAttribute="top" constant="8" id="SHs-fz-VHF"/>
                             <constraint firstItem="R6Z-As-Ot7" firstAttribute="leading" secondItem="AdY-b7-wUb" secondAttribute="trailing" constant="8" id="Zk9-Sc-5Uw"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="bottom" secondItem="nbZ-nO-a0p" secondAttribute="bottom" id="dnM-Kf-OY0"/>
                             <constraint firstItem="2em-6a-iu7" firstAttribute="trailing" secondItem="nbZ-nO-a0p" secondAttribute="trailing" id="fe4-Si-rkP"/>
                             <constraint firstItem="AdY-b7-wUb" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" constant="8" id="hSv-4r-qpH"/>
                             <constraint firstItem="nbZ-nO-a0p" firstAttribute="trailing" secondItem="R6Z-As-Ot7" secondAttribute="trailing" constant="8" id="jTZ-Vt-tWU"/>
                             <constraint firstAttribute="trailing" secondItem="YOH-05-lMT" secondAttribute="trailing" constant="8" id="nwQ-gz-Q4F"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="leading" secondItem="nbZ-nO-a0p" secondAttribute="leading" id="qvO-bK-yiU"/>
+                            <constraint firstItem="2em-6a-iu7" firstAttribute="trailing" secondItem="nbZ-nO-a0p" secondAttribute="trailing" id="sH8-WQ-Rh1"/>
                             <constraint firstItem="2em-6a-iu7" firstAttribute="top" secondItem="YOH-05-lMT" secondAttribute="bottom" constant="8" id="yJx-Ya-XOG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nbZ-nO-a0p"/>
@@ -554,7 +565,7 @@
         <image name="square.grid.3x2" catalog="system" width="64" height="40"/>
         <image name="star" catalog="system" width="64" height="58"/>
         <namedColor name="brandColor">
-            <color red="0.93725490196078431" green="0.38823529411764707" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.93699997663497925" green="0.3880000114440918" blue="0.43900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

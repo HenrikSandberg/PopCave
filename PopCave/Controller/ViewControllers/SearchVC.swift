@@ -19,6 +19,11 @@ class SearchVC: UIViewController, UICollectionViewDelegate {
         self.collectionView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumCell")
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateLayout(to: size)
+    }
+    
     //MARK:- Context Handling
     private func saveToFile() {
         do {
@@ -128,7 +133,7 @@ extension SearchVC: UISearchBarDelegate {
                                     DispatchQueue.main.async {
                                         self.loader.stopAnimating()
                                         self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
-                                        self.updateLayout()
+                                        self.updateLayout(to: self.view.bounds.size)
                                         self.collectionView.reloadData()
                                     }
                                 } catch let err {
@@ -184,15 +189,15 @@ extension SearchVC: UICollectionViewDataSource {
         performSegue(withIdentifier: "searchToAlbum", sender: self)
     }
     
-    private func updateLayout() {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth = view.bounds.width / 2.5
+    private func updateLayout(to size: CGSize) {
+        if let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            let itemWidth = size.width < 800.0 ? size.width / 2.5 : size.width / 5
             let itemHeight = CGFloat(200)
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
             layout.invalidateLayout()
         }
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
