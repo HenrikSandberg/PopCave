@@ -3,6 +3,8 @@ import CoreData
 
 class SearchVC: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     private var albumStructCatalog = [(AlbumStruct, Data)]()
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -11,19 +13,10 @@ class SearchVC: UIViewController, UICollectionViewDelegate {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        self.collectionView.register(UINib(nibName: "AlbumLineCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumLineCell")
-    }
-    
-    private func createLoader() -> UIAlertController {
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.medium
-        loadingIndicator.startAnimating()
+        loader.stopAnimating()
+        loader.hidesWhenStopped = true
         
-        alert.view.addSubview(loadingIndicator)
-        return alert
+        self.collectionView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellWithReuseIdentifier: "customAlbumCell")
     }
     
     //MARK:- Context Handling
@@ -77,6 +70,7 @@ extension SearchVC: UISearchBarDelegate {
             albumStructCatalog.removeAll()
             
             DispatchQueue.main.async {
+                self.loader.startAnimating()
                 self.collectionView.reloadData()
                 searchBar.resignFirstResponder()
             }
@@ -89,6 +83,7 @@ extension SearchVC: UISearchBarDelegate {
         if let text = searchBar.text {
             if text.count == 0 {
                  DispatchQueue.main.async {
+                    self.loader.stopAnimating()
                     self.albumStructCatalog.removeAll()
                     self.collectionView.reloadData()
                     searchBar.resignFirstResponder()
@@ -99,30 +94,29 @@ extension SearchVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         DispatchQueue.main.async {
+            self.loader.stopAnimating()
             self.albumStructCatalog.removeAll()
             self.collectionView.reloadData()
             searchBar.resignFirstResponder()
         }
     }
     
-    private func search(for text: String) {
+    private func search(for text: String, typeSeach: String = "s") {
         var nameStr = text.lowercased()
         nameStr = nameStr.replacingOccurrences(of: " ", with: "%20")
         
-        let strUrl = "https://www.theaudiodb.com/api/v1/json/\(THEAUDIODB_KEY)/searchalbum.php?s=\(nameStr)"
-        print(strUrl)
+        let strUrl = "https://www.theaudiodb.com/api/v1/json/\(THEAUDIODB_KEY)/searchalbum.php?\(typeSeach)=\(nameStr)"
+        
         if let url = URL(string: strUrl) {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 
-                guard let data = data else { return }
+                guard let data = data else {
+                    self.search(for: text, typeSeach: "a")
+                    return
+                }
                 
                 do {
                     let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
-                    
-                    DispatchQueue.main.async {
-                        let alert = self.createLoader()
-                        self.present(alert, animated: true, completion: nil)
-                    }
                     
                     for album in albums["album"]! {
                         if let strUrl = album.strAlbumThumb {
@@ -130,6 +124,13 @@ extension SearchVC: UISearchBarDelegate {
                                 do {
                                     let image = try Data(contentsOf : url)
                                     self.albumStructCatalog.append((album, image))
+                                    
+                                    DispatchQueue.main.async {
+                                        self.loader.stopAnimating()
+                                        self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
+                                        self.updateLayout()
+                                        self.collectionView.reloadData()
+                                    }
                                 } catch let err {
                                     print(err)
                                 }
@@ -137,21 +138,17 @@ extension SearchVC: UISearchBarDelegate {
                         }
                     }
                     
-                    DispatchQueue.main.async {
-                        self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
-                        self.dismiss(animated: true, completion: nil)
-                        self.updateLayout()
-                        self.collectionView.reloadData()
+                } catch {
+                    if (typeSeach != "a"){
+                        self.search(for: text, typeSeach: "a")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.loader.stopAnimating()
+                        }
                     }
-                    
-                } catch let jsonError {
-                    print("error accured: \(jsonError)")
                 }
                 
             }.resume()
-        } else {
-            print("NO sucesess with request")
-            print(strUrl)
         }
     }
 }
@@ -169,7 +166,7 @@ extension SearchVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customAlbumLineCell", for: indexPath) as? AlbumCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customAlbumCell", for: indexPath) as? AlbumCell
             else {
                 assertionFailure("Should have dequeued AlbumCell here")
                 return UICollectionViewCell()
@@ -189,8 +186,8 @@ extension SearchVC: UICollectionViewDataSource {
     
     private func updateLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth = view.bounds.width - CGFloat(16)
-            let itemHeight = CGFloat(90)
+            let itemWidth = view.bounds.width / 2.5
+            let itemHeight = CGFloat(200)
             
             layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
             layout.invalidateLayout()

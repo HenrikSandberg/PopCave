@@ -21,7 +21,7 @@
 		AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */; };
 		AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDB239D601200453C61 /* DecodableStructs.swift */; };
 		AF4A6FDE239D651B00453C61 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDD239D651B00453C61 /* APIKeys.swift */; };
-		AF4A6FE0239D74DD00453C61 /* ArtisWithAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDF239D74DD00453C61 /* ArtisWithAlbums.swift */; };
+		AF4A6FE0239D74DD00453C61 /* OtherCollectinStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */; };
 		AF4A6FE2239D7AB400453C61 /* ArtistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FE1239D7AB400453C61 /* ArtistVC.swift */; };
 		AF5EE1E6239BCC0100AA5863 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5EE1E4239BCC0100AA5863 /* FavoriteCell.swift */; };
 		AF5EE1E7239BCC0100AA5863 /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5EE1E5239BCC0100AA5863 /* FavoriteCell.xib */; };
@@ -71,7 +71,7 @@
 		AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopCave.xcdatamodel; sourceTree = "<group>"; };
 		AF4A6FDB239D601200453C61 /* DecodableStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableStructs.swift; sourceTree = "<group>"; };
 		AF4A6FDD239D651B00453C61 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
-		AF4A6FDF239D74DD00453C61 /* ArtisWithAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtisWithAlbums.swift; sourceTree = "<group>"; };
+		AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCollectinStructs.swift; sourceTree = "<group>"; };
 		AF4A6FE1239D7AB400453C61 /* ArtistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistVC.swift; sourceTree = "<group>"; };
 		AF5EE1E4239BCC0100AA5863 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		AF5EE1E5239BCC0100AA5863 /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 				AF5EE1E8239BD7F400AA5863 /* extensions.swift */,
 				AF4A6FDB239D601200453C61 /* DecodableStructs.swift */,
 				AF4A6FDD239D651B00453C61 /* APIKeys.swift */,
-				AF4A6FDF239D74DD00453C61 /* ArtisWithAlbums.swift */,
+				AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				AF35A30C237C1FAD00A929F7 /* AppDelegate.swift in Sources */,
 				AF35A342237C283D00A929F7 /* AlbumCell.swift in Sources */,
 				AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */,
-				AF4A6FE0239D74DD00453C61 /* ArtisWithAlbums.swift in Sources */,
+				AF4A6FE0239D74DD00453C61 /* OtherCollectinStructs.swift in Sources */,
 				AF4A6FE2239D7AB400453C61 /* ArtistVC.swift in Sources */,
 				AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */,
 				AF5EE1E9239BD7F400AA5863 /* extensions.swift in Sources */,

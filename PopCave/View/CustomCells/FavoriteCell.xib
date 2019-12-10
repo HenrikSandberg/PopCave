@@ -9,33 +9,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFavoriteCell" rowHeight="85" id="KGk-i7-Jjw" customClass="FavoriteCell" customModule="PopCave" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customFavoriteCell" rowHeight="70" id="KGk-i7-Jjw" customClass="FavoriteCell" customModule="PopCave" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsA-wQ-g14">
-                        <rect key="frame" x="83" y="34.5" width="37.5" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsA-wQ-g14">
+                        <rect key="frame" x="70" y="34.5" width="184" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="Mjo-mB-4nH"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:38" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRV-Um-04z">
-                        <rect key="frame" x="265" y="32.5" width="50" height="20.5"/>
+                        <rect key="frame" x="262" y="8" width="50" height="54"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="rXE-SC-Fog"/>
+                            <constraint firstAttribute="width" constant="50" id="RFz-fk-PSa"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="5q4-jd-kjX">
-                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="5q4-jd-kjX">
+                        <rect key="frame" x="8" y="8" width="54" height="54"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="DqH-5p-COP"/>
-                            <constraint firstAttribute="width" constant="70" id="f8M-QI-7vB"/>
+                            <constraint firstAttribute="height" constant="54" id="ASj-v4-pjF"/>
+                            <constraint firstAttribute="width" constant="54" id="opC-nB-ae4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -44,23 +47,29 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIs-aS-PSv">
-                        <rect key="frame" x="83" y="8" width="187" height="21.5"/>
+                        <rect key="frame" x="70" y="10" width="184" height="21.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21.5" id="Exr-2I-E48"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="MsA-wQ-g14" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="5" id="9iR-ha-odn"/>
-                    <constraint firstAttribute="trailing" secondItem="gIs-aS-PSv" secondAttribute="trailing" constant="50" id="Ex5-Pm-fUx"/>
-                    <constraint firstAttribute="bottom" secondItem="5q4-jd-kjX" secondAttribute="bottom" constant="7" id="KLh-YY-z9p"/>
-                    <constraint firstItem="uRV-Um-04z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ki3-yc-hND"/>
-                    <constraint firstAttribute="trailing" secondItem="uRV-Um-04z" secondAttribute="trailing" constant="5" id="UoP-NE-ZSt"/>
-                    <constraint firstItem="5q4-jd-kjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="apT-0L-8OL"/>
-                    <constraint firstItem="gIs-aS-PSv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fka-ac-8aa"/>
-                    <constraint firstItem="gIs-aS-PSv" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="5" id="gfp-64-tNc"/>
-                    <constraint firstItem="MsA-wQ-g14" firstAttribute="top" secondItem="gIs-aS-PSv" secondAttribute="bottom" constant="5" id="pRs-JH-g1b"/>
-                    <constraint firstItem="5q4-jd-kjX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="vwx-GK-ftg"/>
+                    <constraint firstItem="gIs-aS-PSv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4Ck-ah-dGX"/>
+                    <constraint firstItem="gIs-aS-PSv" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="8" id="64H-sD-wga"/>
+                    <constraint firstItem="5q4-jd-kjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Bru-vV-K4t"/>
+                    <constraint firstItem="uRV-Um-04z" firstAttribute="leading" secondItem="MsA-wQ-g14" secondAttribute="trailing" constant="8" id="MJA-si-auW"/>
+                    <constraint firstItem="uRV-Um-04z" firstAttribute="leading" secondItem="gIs-aS-PSv" secondAttribute="trailing" constant="8" id="MQu-RR-wPx"/>
+                    <constraint firstItem="uRV-Um-04z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="PtM-zH-iPV"/>
+                    <constraint firstItem="5q4-jd-kjX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="YQg-yJ-qKN"/>
+                    <constraint firstItem="MsA-wQ-g14" firstAttribute="top" secondItem="gIs-aS-PSv" secondAttribute="bottom" constant="3" id="ZeA-Fi-sQg"/>
+                    <constraint firstAttribute="bottom" secondItem="MsA-wQ-g14" secondAttribute="bottom" constant="17.5" id="eEM-Q7-AlS"/>
+                    <constraint firstAttribute="bottom" secondItem="5q4-jd-kjX" secondAttribute="bottom" constant="8" id="hmC-jG-6uJ"/>
+                    <constraint firstAttribute="trailing" secondItem="uRV-Um-04z" secondAttribute="trailing" constant="8" id="uXR-QM-cRY"/>
+                    <constraint firstItem="MsA-wQ-g14" firstAttribute="leading" secondItem="5q4-jd-kjX" secondAttribute="trailing" constant="8" id="upx-zN-yBe"/>
+                    <constraint firstAttribute="bottom" secondItem="uRV-Um-04z" secondAttribute="bottom" constant="8" id="vB3-Db-sAc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -70,7 +79,7 @@
                 <outlet property="playTimelbl" destination="uRV-Um-04z" id="eVU-BH-mde"/>
                 <outlet property="songlbl" destination="gIs-aS-PSv" id="Ml3-o8-mfc"/>
             </connections>
-            <point key="canvasLocation" x="-62.318840579710148" y="157.70089285714286"/>
+            <point key="canvasLocation" x="-62.318840579710148" y="157.36607142857142"/>
         </tableViewCell>
     </objects>
     <resources>

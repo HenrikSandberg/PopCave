@@ -56,6 +56,7 @@ class AlbumVC: UITableViewController {
                         }
 
                         DispatchQueue.main.async {
+                            self.trackList.sort(by: {$0.number < $1.number})
                             self.tableView.reloadData()
                         }
 
@@ -121,7 +122,6 @@ class AlbumVC: UITableViewController {
             newTrack.trackId = Int32(data.idTrack!)!
             newTrack.number = Int32(data.intTrackNumber!)!
             
-            UserDefaults.standard.set(true, forKey: "updateFavorite")
             trackList.append(newTrack)
             saveToFile()
         }
@@ -149,6 +149,7 @@ class AlbumVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         trackList[indexPath.row].isFavorite = !trackList[indexPath.row].isFavorite
+        UserDefaults.standard.set(true, forKey: "updateFavorite")
         saveToFile()
         
         trackList.sort(by: {$0.number < $1.number})

@@ -6,19 +6,40 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var artistImage: UIImageView!
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var styleLable: UILabel!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var albums = [(album: AlbumStruct, cover: Data)]()
+    private var selectedArtist: Recommendation! {
+        didSet {
+            getAlbums(for: selectedArtist.artistName!)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register( UINib(nibName: "AlbumLineCell", bundle: nil),forCellWithReuseIdentifier: "customAlbumLineCell")
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        collectionView.register( UINib(nibName: "AlbumLineCell", bundle: nil),forCellWithReuseIdentifier: "customAlbumLineCell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        loader.hidesWhenStopped = true
+        loader.startAnimating()
+        
+        if let artist = selectedArtist {
+            artistName.text = artist.artistName ?? "Name not found"
+            styleLable.text = artist.style ?? "No style found"
+                
+            artistImage.image = UIImage(data: artist.image!)
+            artistImage.layer.borderWidth = 4
+            artistImage.layer.masksToBounds = false
+            artistImage.layer.borderColor = #colorLiteral(red: 0.9411764706, green: 0.3843137255, blue: 0.4392156863, alpha: 1)
+            artistImage.layer.cornerRadius = self.artistImage.frame.height/2
+            artistImage.clipsToBounds = true
+        }
     }
     
-    func configure(from name: String) {
-        getArtist(from: name)
+    func configure(artist: Recommendation) {
+        selectedArtist = artist
     }
     
     private func createLoader() -> UIAlertController {
@@ -33,58 +54,9 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
          return alert
      }
     
-    private func setUpContent(with data: Data, artist: ArtistStruct) {
-        DispatchQueue.main.async {
-            self.artistName.text = artist.strArtist!
-            self.styleLable.text = artist.strStyle!
-                
-            self.artistImage.image = UIImage(data: data)
-            self.artistImage.layer.borderWidth = 4
-            self.artistImage.layer.masksToBounds = false
-            self.artistImage.layer.borderColor = #colorLiteral(red: 0.9411764706, green: 0.3843137255, blue: 0.4392156863, alpha: 1)
-            self.artistImage.layer.cornerRadius = self.artistImage.frame.height/2
-            self.artistImage.clipsToBounds = true
-        }
-    }
-    
     
     //MARK:- Load data
-    private func getArtist(from name: String) {
-        DispatchQueue.main.async {
-            var urlString = name.lowercased()
-            urlString = urlString.replacingOccurrences(of: " ", with: "%20")
-            
-            if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/search.php?s=\(urlString)")  {
-                
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
-                    
-                    guard let data = data else { return }
-                    
-                    do {
-                        let artists = try JSONDecoder().decode([String:[ArtistStruct]].self, from: data)
-                        
-                        for artist in artists["artists"]! {
-                            if let contentUrl = artist.strArtistThumb {
-                                if let url = URL(string: contentUrl) {
-                                    do {
-                                        let image = try Data(contentsOf : url)
-                                        self.setUpContent(with: image, artist: artist)
-                                        self.getAlbums(for: name)
-                                    } catch let err {
-                                        print(err)
-                                    }
-                                }
-                            }
-                        }
-                    } catch let jsonError {
-                        print("error accured: \(jsonError)")
-                    }
-                }.resume()
-            }
-        }
-    }
-    
-    private func getAlbums(for artist: String){
+    private func getAlbums(for artist: String) {
         var nameStr = artist.lowercased()
         nameStr = nameStr.replacingOccurrences(of: " ", with: "%20")
         
@@ -112,6 +84,7 @@ class ArtistVC: UIViewController, UICollectionViewDelegate {
                     }
                     
                     DispatchQueue.main.async {
+                        self.loader.stopAnimating()
                         self.albums.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
                         self.updateLayout()
                     }
