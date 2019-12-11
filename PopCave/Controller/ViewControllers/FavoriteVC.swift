@@ -51,9 +51,8 @@ class FavoriteVC: UITableViewController {
         getRecommendations()
     }
     
-    
     //MARK:- Load items
-    func loadItems() {
+    private func loadItems() {
         do {
             let request: NSFetchRequest<Track> = Track.fetchRequest()
             let items = try context.fetch(request)
@@ -73,179 +72,7 @@ class FavoriteVC: UITableViewController {
             print("Error with load: \(error)")
         }
     }
-    
-    
-    //MARK:- Recomendations
-    private func resetRecommendations() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recommendation")
-        fetchRequest.includesPropertyValues = false
-        
-        do {
-            let items = try context.fetch(fetchRequest) as! [NSManagedObject]
 
-            for item in items {
-                context.delete(item)
-            }
-            
-            try context.save()
-            
-            let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
-            recomendationArray = try context.fetch(request)
-            
-        } catch {
-            print("Error with load: \(error)")
-        }
-    }
-    
-    private func loadRecommendations() {
-        
-        let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
-        
-        do {
-            recomendationArray = try context.fetch(request)
-            
-            if recomendationArray.count < 0 {
-                updateFavorite = true
-                UserDefaults.standard.set(updateFavorite, forKey: "updateFavorite")
-                getRecommendations()
-            } else {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-            
-        } catch {
-            print("Error with load: \(error)")
-        }
-    }
-    
-    private func addRecommendation(with artist: ArtistStruct, and data: Data?){
-        var shouldAdd = true
-        
-        for content in recomendationArray {
-            if let artistName = content.artistName {
-                if artistName == artist.strArtist {
-                    shouldAdd = false
-                }
-            }
-        }
-        
-        if shouldAdd {
-            let newRecommendation = Recommendation(context: context)
-            newRecommendation.artistName = artist.strArtist
-            newRecommendation.bio = artist.strBiographyEN
-            newRecommendation.cuntry = artist.strCountry
-            newRecommendation.style = artist.strStyle
-            newRecommendation.image = data
-            
-            recomendationArray.append(newRecommendation)
-            saveToFile()
-        }
-    }
-    
-    private func getArtist(from name: String) {
-        var urlString = name.lowercased()
-        urlString = urlString.replacingOccurrences(of: " ", with: "%20")
-        
-        if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/search.php?s=\(urlString)")  {
-            
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
-                guard let data = data else { return }
-                
-                do {
-                    let artists = try JSONDecoder().decode([String:[ArtistStruct]].self, from: data)
-                    
-                    for artist in artists["artists"]! {
-                        if let contentUrl = artist.strArtistThumb {
-                            if let url = URL(string: contentUrl) {
-                                do {
-                                    let image = try Data(contentsOf : url)
-                                    self.addRecommendation(with: artist, and: image)
-                                } catch let err {
-                                    print(err)
-                                }
-                            }
-                        }
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.tableHeaderView = self.header
-                        self.tableView.reloadData()
-                        self.collectionView.reloadData()
-                    }
-                } catch let jsonError {
-                    print("error accured: \(jsonError)")
-                }
-            }.resume()
-        }
-    }
-
-    //MARK:- GET Recommendations from the web
-    private func getRecommendations() {
-        
-        var baseUrl = "https://tastedive.com/api/similar?q="
-        var artistArray = [String]()
-        
-        if trackArray.count <= 0  {
-            return
-        }
-        
-        if !updateFavorite! {
-            loadRecommendations()
-            collectionView.reloadData()
-            return
-        }
-        
-        if recomendationArray.count > 0 {
-            resetRecommendations()
-        }
-        
-        for track in trackArray {
-            var trackString = track.parentAlbum!.artist!
-            trackString = trackString.replacingOccurrences(of: " ", with: "+")
-            if !artistArray.contains(trackString) {
-                artistArray.append(trackString)
-            }
-        }
-        
-        for number in Range(0...artistArray.count-1) {
-            if (number < artistArray.count-1) {
-                baseUrl = "\(baseUrl)\(artistArray[number])%2C"
-            } else {
-                baseUrl = "\(baseUrl)\(artistArray[number])"
-            }
-        }
-        
-        baseUrl = "\(baseUrl)/k=\(RECKEY)"
-        
-        if let url = URL(string: baseUrl) {
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                
-                guard let data = data else { return }
-                
-                do {
-                    let artists = try JSONDecoder().decode([String:[String:[RecomendationStruct]]].self, from: data)
-                                        
-                    if let artistCollection =  artists["Similar"]?["Results"]{
-                        for artist in artistCollection {
-                            if let name = artist.Name {
-                                self.getArtist(from: name)
-                            }
-                        }
-                        
-                        self.updateFavorite = false
-                        UserDefaults.standard.set(self.updateFavorite, forKey: "updateFavorite")
-                        
-                    }
-  
-                } catch let error {
-                    print("Error accured: \(error)")
-                }
-            }.resume()
-        }
-    }
-    
     //MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ArtistVC, let index = collectionView.indexPathsForSelectedItems?.first {
@@ -323,3 +150,175 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
+//MARK:- Recommendation
+extension FavoriteVC {
+    
+   private func resetRecommendations() {
+       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recommendation")
+       fetchRequest.includesPropertyValues = false
+       
+       do {
+           let items = try context.fetch(fetchRequest) as! [NSManagedObject]
+
+           for item in items {
+               context.delete(item)
+           }
+           
+           try context.save()
+           
+           let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
+           recomendationArray = try context.fetch(request)
+           
+       } catch {
+           print("Error with load: \(error)")
+       }
+   }
+   
+   private func loadRecommendations() {
+       
+       let request: NSFetchRequest<Recommendation> = Recommendation.fetchRequest()
+       
+       do {
+           recomendationArray = try context.fetch(request)
+           
+           if recomendationArray.count < 0 {
+               updateFavorite = true
+               UserDefaults.standard.set(updateFavorite, forKey: "updateFavorite")
+               getRecommendations()
+           } else {
+               DispatchQueue.main.async {
+                   self.collectionView.reloadData()
+               }
+           }
+           
+       } catch {
+           print("Error with load: \(error)")
+       }
+   }
+   
+   private func addRecommendation(with artist: ArtistStruct, and data: Data?){
+       var shouldAdd = true
+       
+       for content in recomendationArray {
+           if let artistName = content.artistName {
+               if artistName == artist.strArtist {
+                   shouldAdd = false
+               }
+           }
+       }
+       
+       if shouldAdd {
+           let newRecommendation = Recommendation(context: context)
+           newRecommendation.artistName = artist.strArtist
+           newRecommendation.bio = artist.strBiographyEN
+           newRecommendation.cuntry = artist.strCountry
+           newRecommendation.style = artist.strStyle
+           newRecommendation.image = data
+           
+           recomendationArray.append(newRecommendation)
+           saveToFile()
+       }
+   }
+   
+   private func getArtist(from name: String) {
+       var urlString = name.lowercased()
+       urlString = urlString.replacingOccurrences(of: " ", with: "%20")
+       
+       if let url = URL(string: "https://www.theaudiodb.com/api/v1/json/1/search.php?s=\(urlString)")  {
+           
+           URLSession.shared.dataTask(with: url) { (data, response, error) in
+               
+               guard let data = data else { return }
+               
+               do {
+                   let artists = try JSONDecoder().decode([String:[ArtistStruct]].self, from: data)
+                   
+                   for artist in artists["artists"]! {
+                       if let contentUrl = artist.strArtistThumb {
+                           if let url = URL(string: contentUrl) {
+                               do {
+                                   let image = try Data(contentsOf : url)
+                                   self.addRecommendation(with: artist, and: image)
+                               } catch let err {
+                                   print(err)
+                               }
+                           }
+                       }
+                   }
+                   
+                   DispatchQueue.main.async {
+                       self.tableView.tableHeaderView = self.header
+                       self.tableView.reloadData()
+                       self.collectionView.reloadData()
+                   }
+               } catch let jsonError {
+                   print("error accured: \(jsonError)")
+               }
+           }.resume()
+       }
+   }
+    
+   func getRecommendations() {
+       
+       var baseUrl = "https://tastedive.com/api/similar?q="
+       var artistArray = [String]()
+       
+       if trackArray.count <= 0  {
+           return
+       }
+       
+       if !updateFavorite! {
+           loadRecommendations()
+           collectionView.reloadData()
+           return
+       }
+       
+       if recomendationArray.count > 0 {
+           resetRecommendations()
+       }
+       
+       for track in trackArray {
+           var trackString = track.parentAlbum!.artist!
+           trackString = trackString.replacingOccurrences(of: " ", with: "+")
+           if !artistArray.contains(trackString) {
+               artistArray.append(trackString)
+           }
+       }
+       
+       for number in Range(0...artistArray.count-1) {
+           if (number < artistArray.count-1) {
+               baseUrl = "\(baseUrl)\(artistArray[number])%2C"
+           } else {
+               baseUrl = "\(baseUrl)\(artistArray[number])"
+           }
+       }
+       
+       baseUrl = "\(baseUrl)/k=\(RECKEY)"
+       
+       if let url = URL(string: baseUrl) {
+           URLSession.shared.dataTask(with: url) { (data, response, error) in
+               
+               guard let data = data else { return }
+               
+               do {
+                   let artists = try JSONDecoder().decode([String:[String:[RecomendationStruct]]].self, from: data)
+                                       
+                   if let artistCollection =  artists["Similar"]?["Results"]{
+                       for artist in artistCollection {
+                           if let name = artist.Name {
+                               self.getArtist(from: name)
+                           }
+                       }
+                       
+                       self.updateFavorite = false
+                       UserDefaults.standard.set(self.updateFavorite, forKey: "updateFavorite")
+                       
+                   }
+ 
+               } catch let error {
+                   print("Error accured: \(error)")
+               }
+           }.resume()
+       }
+   }
+}
