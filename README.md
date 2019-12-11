@@ -11,6 +11,8 @@ Design choices for me drove a lot of the coding in this project. The first thing
 ## Logo 
 I went for a simple logo with only two colors in use. The name comes from the idea that this app is a horder of pop music through the ages and the arrow represents an eternal loop, just like a playlist set on repeat. 
 
+![Logo to my face brand](screenshots/logo.png "Logo")
+
 ## Screen sizes
 As the assignment descried this code should work on all phone sizes in portrait mode. I decided to build for iOS 13 and newer, this means that some screen sizes are no longer included. Even so, I took this in to account and designed so it might have worked on the screen size of an iPhone 4 and older as well. The code now can run on iPhone 6s/iPhone SE and newer and should work quite well. 
 
@@ -18,6 +20,8 @@ As the assignment descried this code should work on all phone sizes in portrait 
 
 ## Dark Mode
 The reason for me to build for iOS 13 and newer was to experiment with dark mode. This turned out to be quite easy. All views should now look good in both light and dark mode. 
+
+![Compare light and dark mode](screenshots/darkmode.png "Darkmode")
 
 ## Core Data
 I used core data quite a lot in this assignment. I decided to include all 50 most popular albums as well as their tracks (if user clicks in on one) in order to make second and future experiences of the app feel quick and fun. I also save albums the user clicks into in search and tracks in order to add the to favorites. 
@@ -66,22 +70,31 @@ Making the cover art take up as much as possible of the screen turned out to be 
 
 On the track is as the assignment describe then name as well as play time. I also added a star to indicate if a track is currently a favorite or not. 
 
+![Compare album views](screenshots/album.png "Album view")
+
 ### Assignment 3
 I used a collection view in order to display the albums on this page. In the top list view controller (TopListVC) I handle the changes to the UI by loading to different Xib files related to the same collection view cell. By clicking one on the segment controller you change the loaded Xib as well as how much space the cell should take up.
 
 By clicking on a album the user will be taken into one of the the corresponding album view with a list of all tracks and a filled star if the track is loved. 
 
-![]()
+![Compare differences in list and list structure](screenshots/gridAndList.png "List & Grid view")
 
 ### Assignment 4
 My search works a little different from the assignment. I registered as a developer on ​theaudiodb.com in order to get access to search for all albums related to an artist. This resulted in the opportunity to search for artists. This is also what my search now do first. If that does not result in anything, it will then search for albums with that name. Under is an example of search, left phone peached for an artist while right phone searched for one of the albums to the same artist. All data in search comes from the API. You can tap on any of the albums and access all the albums tracks. Here you can add any track into your favorite, just like you can do on the top 50 page. 
+
+![Compare differences in seach for artist and album](screenshots/search.png "Search view")
+
 
 ### Assignment 5
 As described in previous parts there are several places where you can add favorites, but them all show up on this page. On top of the page is view containing a horizontal collection view where you can find recommendations based on the API described in the assignment. 
 
 By tapping edit in top right you will   activate the opportunity to rearrange the tracks as well as deleting them. You can also delete a track from favorites by swiping on the cell. Both ways of deleting will activate a alert view in order for user to verify if they want to delete or not. 
 
+![List of favorites with recommendations on top](screenshots/favescreen.png "Favorite view")
+
 I went a little further in this part of the assignment. If you tapp on any of the recommendations you will be taken to an artist view. This page showes you an selected artist and all albums by that artist (accessible from theaudiodb.com). This is done by two different calls to the site. The first one finds the artist and the second finds all related albums. If you tap on an album you will be taken to that albums detail view. Here you can add tracks into your favorites and by doing so, getting better predictions next time now based on recommendations you have gotten already. 
+
+![List of all albums made by recommended artist](screenshots/recommendation.png "Recommendation view")
 
 ## Conclusion
 Making an iPhone app is really fun. I have built many small apps before, with single use cases. This was my first big iPhone app project and dear I say, it turned out quite nicely. The app I ended up building is close to production ready in my eyes, however I’m not sure it you get a big user group. 
