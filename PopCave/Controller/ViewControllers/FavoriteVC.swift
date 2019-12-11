@@ -54,6 +54,8 @@ class FavoriteVC: UITableViewController {
     //MARK:- Load items
     private func loadItems() {
         do {
+            trackArray.removeAll()
+            
             let request: NSFetchRequest<Track> = Track.fetchRequest()
             let items = try context.fetch(request)
             

@@ -10,13 +10,10 @@ extension TimeInterval {
     var second: Int {
         return Int(truncatingRemainder(dividingBy: 60))
     }
-    var millisecond: Int {
-        return Int((self*1000).truncatingRemainder(dividingBy: 1000))
-    }
 }
 
 extension Int {
-    var msToSeconds: Double {
+    var milisToSecounds: Double {
         return Double(self) / 1000
     }
 }
