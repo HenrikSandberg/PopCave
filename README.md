@@ -11,7 +11,7 @@ Design choices for me drove a lot of the coding in this project. The first thing
 ## Logo 
 I went for a simple logo with only two colors in use. The name comes from the idea that this app is a horder of pop music through the ages and the arrow represents an eternal loop, just like a playlist set on repeat. 
 
-![Logo to my face brand](screenshots/logo.png "Logo")
+<img src="./screenshots/logo.png" width="100" height="100" />
 
 ## Screen sizes
 As the assignment descried this code should work on all phone sizes in portrait mode. I decided to build for iOS 13 and newer, this means that some screen sizes are no longer included. Even so, I took this in to account and designed so it might have worked on the screen size of an iPhone 4 and older as well. The code now can run on iPhone 6s/iPhone SE and newer and should work quite well. 
