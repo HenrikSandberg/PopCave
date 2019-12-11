@@ -14,6 +14,8 @@ I went for a simple logo with only two colors in use. The name comes from the id
 ## Screen sizes
 As the assignment descried this code should work on all phone sizes in portrait mode. I decided to build for iOS 13 and newer, this means that some screen sizes are no longer included. Even so, I took this in to account and designed so it might have worked on the screen size of an iPhone 4 and older as well. The code now can run on iPhone 6s/iPhone SE and newer and should work quite well. 
 
+![Compare screen sizes](screenshots/size.png?raw=true "Screen sizes")
+
 ## Dark Mode
 The reason for me to build for iOS 13 and newer was to experiment with dark mode. This turned out to be quite easy. All views should now look good in both light and dark mode. 
 
