@@ -107,8 +107,7 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     private func search(for text: String, typeSeach: String = "s") {
-        var nameStr = text.lowercased()
-        nameStr = nameStr.replacingOccurrences(of: " ", with: "%20")
+        let nameStr = text.toUrlString
         
         let strUrl = "https://www.theaudiodb.com/api/v1/json/\(THEAUDIODB_KEY)/searchalbum.php?\(typeSeach)=\(nameStr)"
         
