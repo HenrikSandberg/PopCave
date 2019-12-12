@@ -129,17 +129,18 @@ extension SearchVC: UISearchBarDelegate {
                                     let image = try Data(contentsOf : url)
                                     self.albumStructCatalog.append((album, image))
                                     
-                                    DispatchQueue.main.async {
-                                        self.loader.stopAnimating()
-                                        self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
-                                        self.updateLayout(to: self.view.bounds.size)
-                                        self.collectionView.reloadData()
-                                    }
                                 } catch let err {
                                     print(err)
                                 }
                             }
                         }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.loader.stopAnimating()
+                        self.albumStructCatalog.sort(by: {Int($0.0.intYearReleased!)! > Int($1.0.intYearReleased!)!})
+                        self.updateLayout(to: self.view.bounds.size)
+                        self.collectionView.reloadData()
                     }
                     
                 } catch {

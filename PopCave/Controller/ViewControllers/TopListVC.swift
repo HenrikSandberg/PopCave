@@ -62,14 +62,7 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
             albumCatalog = try context.fetch(request)
             
             if albumCatalog.count < 50 {
-                
-                let alert = createLoader()
-                
-                present(alert, animated: true, completion: nil)
-                
                 loadTopAlbums()
-                
-                dismiss(animated: true, completion: nil)
             } else {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -130,6 +123,10 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
                 do {
                     let albums = try JSONDecoder().decode([String:[AlbumStruct]].self, from: data)
                     
+                    DispatchQueue.main.async {
+                        let alert = self.createLoader()
+                        self.present(alert, animated: true, completion: nil)
+                    }
                     for album in albums["loved"]!{
                         if let contentUrl = album.strAlbumThumb {
                             if let url = URL(string: contentUrl) {
@@ -141,6 +138,9 @@ class TopListVC: UIViewController, UICollectionViewDelegate {
                                 }
                             }
                         }
+                    }
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
                     }
                 } catch let jsonError {
                     print("error accured: \(jsonError)")
