@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19B77a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Album" representedClassName="Album" syncable="YES" codeGenerationType="class">
+        <attribute name="albumId" optional="YES" attributeType="String"/>
+        <attribute name="albumTitle" optional="YES" attributeType="String"/>
+        <attribute name="artisId" optional="YES" attributeType="String"/>
+        <attribute name="artist" optional="YES" attributeType="String"/>
+        <attribute name="cover" optional="YES" attributeType="Binary"/>
+        <attribute name="top50Album" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="String"/>
+        <relationship name="parentAlbum" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="parentAlbum" inverseEntity="Track"/>
+    </entity>
+    <entity name="Recommendation" representedClassName="Recommendation" syncable="YES" codeGenerationType="class">
+        <attribute name="artistName" optional="YES" attributeType="String"/>
+        <attribute name="bio" optional="YES" attributeType="String"/>
+        <attribute name="cuntry" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="style" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="trackId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="parentAlbum" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="parentAlbum" inverseEntity="Album"/>
+    </entity>
+    <elements>
+        <element name="Album" positionX="-63" positionY="-18" width="118.7109375" height="163"/>
+        <element name="Track" positionX="197.14453125" positionY="25.0859375" width="128" height="133"/>
+        <element name="Recommendation" positionX="63" positionY="54" width="128" height="118"/>
+    </elements>
+</model>

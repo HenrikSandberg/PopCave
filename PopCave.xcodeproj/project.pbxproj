@@ -18,7 +18,6 @@
 		AF35A326237C1FAD00A929F7 /* PopCaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A325237C1FAD00A929F7 /* PopCaveTests.swift */; };
 		AF35A331237C1FAD00A929F7 /* PopCaveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */; };
 		AF35A342237C283D00A929F7 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF35A341237C283D00A929F7 /* AlbumCell.swift */; };
-		AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */; };
 		AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDB239D601200453C61 /* DecodableStructs.swift */; };
 		AF4A6FDE239D651B00453C61 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDD239D651B00453C61 /* APIKeys.swift */; };
 		AF4A6FE0239D74DD00453C61 /* OtherCollectinStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */; };
@@ -27,6 +26,7 @@
 		AF5EE1E7239BCC0100AA5863 /* FavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF5EE1E5239BCC0100AA5863 /* FavoriteCell.xib */; };
 		AF5EE1E9239BD7F400AA5863 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5EE1E8239BD7F400AA5863 /* Extensions.swift */; };
 		AF5EE1F3239D216600AA5863 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5EE1F2239D216600AA5863 /* ArtistCell.swift */; };
+		AF65076723D1E90A00A62F97 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF65076523D1E90A00A62F97 /* Model.xcdatamodeld */; };
 		AF988DAD2398053200F27886 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF988DAC2398053200F27886 /* TrackCell.swift */; };
 		AFE87119239D54360012411A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE87118239D54360012411A /* SearchVC.swift */; };
 		AFFCDEF9239A8E2C00E234EA /* AlbumLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFFCDEF8239A8E2C00E234EA /* AlbumLineCell.xib */; };
@@ -68,7 +68,6 @@
 		AF35A330237C1FAD00A929F7 /* PopCaveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCaveUITests.swift; sourceTree = "<group>"; };
 		AF35A332237C1FAD00A929F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF35A341237C283D00A929F7 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = PopCave/Controller/CellControllers/AlbumCell.swift; sourceTree = SOURCE_ROOT; };
-		AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopCave.xcdatamodel; sourceTree = "<group>"; };
 		AF4A6FDB239D601200453C61 /* DecodableStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableStructs.swift; sourceTree = "<group>"; };
 		AF4A6FDD239D651B00453C61 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCollectinStructs.swift; sourceTree = "<group>"; };
@@ -77,6 +76,7 @@
 		AF5EE1E5239BCC0100AA5863 /* FavoriteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCell.xib; sourceTree = "<group>"; };
 		AF5EE1E8239BD7F400AA5863 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AF5EE1F2239D216600AA5863 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
+		AF65076623D1E90A00A62F97 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AF988DAC2398053200F27886 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		AFE87118239D54360012411A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		AFFCDEF8239A8E2C00E234EA /* AlbumLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumLineCell.xib; sourceTree = "<group>"; };
@@ -181,11 +181,11 @@
 		AF35A340237C267300A929F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */,
 				AF5EE1E8239BD7F400AA5863 /* Extensions.swift */,
 				AF4A6FDB239D601200453C61 /* DecodableStructs.swift */,
 				AF4A6FDD239D651B00453C61 /* APIKeys.swift */,
 				AF4A6FDF239D74DD00453C61 /* OtherCollectinStructs.swift */,
+				AF65076523D1E90A00A62F97 /* Model.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,9 +375,9 @@
 				AF4A6FDC239D601200453C61 /* DecodableStructs.swift in Sources */,
 				AF4A6FE0239D74DD00453C61 /* OtherCollectinStructs.swift in Sources */,
 				AF4A6FE2239D7AB400453C61 /* ArtistVC.swift in Sources */,
-				AF43DC66239EB66E00338DC2 /* PopCave.xcdatamodeld in Sources */,
 				AF5EE1E9239BD7F400AA5863 /* Extensions.swift in Sources */,
 				AF0173DA2396C391003ECD4C /* AlbumVC.swift in Sources */,
+				AF65076723D1E90A00A62F97 /* Model.xcdatamodeld in Sources */,
 				AF5EE1E6239BCC0100AA5863 /* FavoriteCell.swift in Sources */,
 				AFE87119239D54360012411A /* SearchVC.swift in Sources */,
 				AF35A30E237C1FAD00A929F7 /* SceneDelegate.swift in Sources */,
@@ -714,14 +714,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		AF43DC64239EB66E00338DC2 /* PopCave.xcdatamodeld */ = {
+		AF65076523D1E90A00A62F97 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */,
+				AF65076623D1E90A00A62F97 /* Model.xcdatamodel */,
 			);
-			currentVersion = AF43DC65239EB66E00338DC2 /* PopCave.xcdatamodel */;
-			name = PopCave.xcdatamodeld;
-			path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/PopCave/PopCave/Model/PopCave.xcdatamodeld";
+			currentVersion = AF65076623D1E90A00A62F97 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
