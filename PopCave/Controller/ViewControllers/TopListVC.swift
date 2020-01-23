@@ -193,22 +193,25 @@ extension TopListVC: UICollectionViewDataSource {
     }
     
     private func updateLayout(to size: CGSize) {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let itemWidth: CGFloat
-            let itemHeight: CGFloat
-            
-            if !showInList {
-                itemWidth = size.width < 800.0 ? size.width / 2.5 : size.width / 5
-                itemHeight = CGFloat(200)
-            } else {
-                itemWidth = size.width
-                itemHeight = CGFloat(90)
+        if collectionView != nil{
+            if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                let itemWidth: CGFloat
+                let itemHeight: CGFloat
+                
+                if !showInList {
+                    itemWidth = size.width < 800.0 ? size.width / 2.5 : size.width / 5
+                    itemHeight = CGFloat(200)
+                } else {
+                    itemWidth = size.width
+                    itemHeight = CGFloat(90)
+                }
+                
+                layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+                layout.invalidateLayout()
             }
-            
-            layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-            layout.invalidateLayout()
+            collectionView.reloadData()
+
         }
-        collectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

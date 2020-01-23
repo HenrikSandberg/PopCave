@@ -79,6 +79,7 @@
 		AF65076623D1E90A00A62F97 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AF988DAC2398053200F27886 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		AFE87118239D54360012411A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		AFEE2CD123D20576005E02DA /* PopCave.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PopCave.entitlements; sourceTree = "<group>"; };
 		AFFCDEF8239A8E2C00E234EA /* AlbumLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumLineCell.xib; sourceTree = "<group>"; };
 		AFFCDEFA239AD77F00E234EA /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +132,7 @@
 		AF35A30A237C1FAD00A929F7 /* PopCave */ = {
 			isa = PBXGroup;
 			children = (
+				AFEE2CD123D20576005E02DA /* PopCave.entitlements */,
 				AF35A33F237C266D00A929F7 /* View */,
 				AF35A33E237C265C00A929F7 /* Controller */,
 				AF35A340237C267300A929F7 /* Model */,
@@ -554,7 +556,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PopCave/PopCave.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 8LJBM9LES6;
 				INFOPLIST_FILE = PopCave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -564,8 +568,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -573,7 +578,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PopCave/PopCave.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 8LJBM9LES6;
 				INFOPLIST_FILE = PopCave/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -583,8 +590,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.henrik.sandberg.PopCave;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
